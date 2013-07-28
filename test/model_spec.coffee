@@ -49,15 +49,5 @@ describe 'Model', ->
           Article.fields().should.include(field.name)
 
 
-      it 'should have getter methods for model', ->
-        for field in Article.fields()
-          console.log "."
-          (typeof eval("article.#{field}")).should.equal "function"
-
-
-      it 'should have setter methods for model', ->
-        for field in Article.fields()
-          (typeof eval("article.#{field}")).should.equal "function"
-
 
 

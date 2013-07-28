@@ -61,32 +61,11 @@ describe('Model', function() {
         assert.equal("Article", Article.className);
         return assert.equal("articles", Article.tableName());
       });
-      it('should have fields from migration', function() {
+      return it('should have fields from migration', function() {
         var fields;
         return fields = migration.fields.map(function(field) {
           return Article.fields().should.include(field.name);
         });
-      });
-      it('should have getter methods for model', function() {
-        var field, _i, _len, _ref1, _results;
-        _ref1 = Article.fields();
-        _results = [];
-        for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-          field = _ref1[_i];
-          console.log(".");
-          _results.push((typeof eval("article." + field)).should.equal("function"));
-        }
-        return _results;
-      });
-      return it('should have setter methods for model', function() {
-        var field, _i, _len, _ref1, _results;
-        _ref1 = Article.fields();
-        _results = [];
-        for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-          field = _ref1[_i];
-          _results.push((typeof eval("article." + field)).should.equal("function"));
-        }
-        return _results;
       });
     });
   });
