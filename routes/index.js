@@ -4,9 +4,10 @@
  */
 
 var app = require('../app');
-var article = require('../app/models/article')
+var Article = require('../app/models/article')
 
 exports.index = function(req, res) {
+  /*
   var io = app.io;
   io.sockets.on('connection', function (socket) {
     socket.emit('news', { hello: 'world' });
@@ -17,6 +18,13 @@ exports.index = function(req, res) {
       console.log(data);
     });
   });
+  */
 
-  res.render('index', { title: 'Express' });
+  // Article.create({author_id: 2, title: 'Damn right', body: 'Sometimes!'}, function() {})
+  // Article.create({author_id: 1, title: 'MIIIES', body: 'geilo!'}, function() {})
+
+  var articles;
+  articles = Article.all(function(err) {
+    res.render('index', { title: 'Express', articles: articles })
+  });
 }

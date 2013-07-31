@@ -16,5 +16,11 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <ul>
+    <% for(var i=0, n=articles.length; i<n; i++) {%>
+      <li><%= articles[i].title %></li>
+    <% } %>
+    </ul>
   </body>
 </html>
