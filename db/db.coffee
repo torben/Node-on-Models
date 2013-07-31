@@ -2,23 +2,34 @@ fs = require('fs')
 sqlite3 = require('sqlite3').verbose()
 async = require('async')
 
+
 class DB
   migrationDir: "./db/migrations"
   checkTableSql: "SELECT name FROM sqlite_master WHERE type='table' AND name=?;"
 
 
-  constructor: (env = 'development', unlink = false, withMigrations = false) ->
+  constructor: (env = 'development', withMigrations = false) ->
     @database = "./db/database_#{env}.sqlite"
 
-    fs.unlinkSync(@database) if fs.existsSync(@database) && unlink
+    #@unlinkDatabase() if unlink
+    @createDatabase() unless fs.existsSync(@database)
+    @db = @openDatabase()
 
-    unless fs.existsSync(@database)
-      file = fs.openSync(@database, 'w')
-      fs.close(file)
 
-    @db = new sqlite3.Database(@database)
+  #unlinkDatabase: ->
+  #  fs.unlinkSync(@database) if fs.existsSync(@database)
 
-    @doMigrations() if withMigrations
+
+  createDatabase: ->
+    return if fs.existsSync(@database)
+
+    file = fs.openSync(@database, 'w')
+    fs.close(file)
+
+
+  openDatabase: ->
+    return @db if @db?
+    new sqlite3.Database(@database)
 
 
   loadFieldsFor: (tableName, callback) ->
@@ -76,9 +87,41 @@ class DB
             callback(null, index+1) if callback?
 
 
+  insertRow: (tableName, fields, values, callback) ->
+    sql = "INSERT INTO #{tableName} (#{fields.join(',')}) VALUES (#{'?' for i in [1..fields.length]})"
+    that = @
+    @db.run sql, values, (err) ->
+      return callback.call(@, err) if err?
+      return callback.call(@, new Error('lastID not found')) unless @lastID?
 
-module.exports = DB
+      that.findById @lastID, tableName, callback
+
+
+  updateRow: (tableName, id, fields, values, callback) ->
+    sql = "UPDATE #{tableName} SET #{field+' = ?' for field in fields} WHERE id = ?"
+    values.push(id)
+    @db.run sql, values, (err) =>
+      return callback.call(@, err) if err?
+
+      @findById id, tableName, callback
+
+
+  findById: (id, tableName, callback) ->
+    sql = "SELECT * FROM #{tableName} where id = ?"
+    @db.get sql, [id], callback
+
+
+  loadAllFor: (tableName, callback) ->
+    sql = "SELECT * FROM #{tableName} ORDER BY id"
+    @db.all sql, callback
+
+
+db = null
+
+module.exports = (env) ->
+  db || db = new DB(env)
 
 
 if require.main == module
-  db = new DB('development', true, true)
+  db = new DB('development')
+  db.doMigrations()

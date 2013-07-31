@@ -12,30 +12,35 @@ DB = (function() {
 
   DB.prototype.checkTableSql = "SELECT name FROM sqlite_master WHERE type='table' AND name=?;";
 
-  function DB(env, unlink, withMigrations) {
-    var file;
+  function DB(env, withMigrations) {
     if (env == null) {
       env = 'development';
-    }
-    if (unlink == null) {
-      unlink = false;
     }
     if (withMigrations == null) {
       withMigrations = false;
     }
     this.database = "./db/database_" + env + ".sqlite";
-    if (fs.existsSync(this.database) && unlink) {
-      fs.unlinkSync(this.database);
-    }
     if (!fs.existsSync(this.database)) {
-      file = fs.openSync(this.database, 'w');
-      fs.close(file);
+      this.createDatabase();
     }
-    this.db = new sqlite3.Database(this.database);
-    if (withMigrations) {
-      this.doMigrations();
-    }
+    this.db = this.openDatabase();
   }
+
+  DB.prototype.createDatabase = function() {
+    var file;
+    if (fs.existsSync(this.database)) {
+      return;
+    }
+    file = fs.openSync(this.database, 'w');
+    return fs.close(file);
+  };
+
+  DB.prototype.openDatabase = function() {
+    if (this.db != null) {
+      return this.db;
+    }
+    return new sqlite3.Database(this.database);
+  };
 
   DB.prototype.loadFieldsFor = function(tableName, callback) {
     var sql;
@@ -128,12 +133,72 @@ DB = (function() {
     }
   };
 
+  DB.prototype.insertRow = function(tableName, fields, values, callback) {
+    var i, sql, that;
+    sql = "INSERT INTO " + tableName + " (" + (fields.join(',')) + ") VALUES (" + ((function() {
+      var _i, _ref, _results;
+      _results = [];
+      for (i = _i = 1, _ref = fields.length; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
+        _results.push('?');
+      }
+      return _results;
+    })()) + ")";
+    that = this;
+    return this.db.run(sql, values, function(err) {
+      if (err != null) {
+        return callback.call(this, err);
+      }
+      if (this.lastID == null) {
+        return callback.call(this, new Error('lastID not found'));
+      }
+      return that.findById(this.lastID, tableName, callback);
+    });
+  };
+
+  DB.prototype.updateRow = function(tableName, id, fields, values, callback) {
+    var field, sql,
+      _this = this;
+    sql = "UPDATE " + tableName + " SET " + ((function() {
+      var _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = fields.length; _i < _len; _i++) {
+        field = fields[_i];
+        _results.push(field + ' = ?');
+      }
+      return _results;
+    })()) + " WHERE id = ?";
+    values.push(id);
+    return this.db.run(sql, values, function(err) {
+      if (err != null) {
+        return callback.call(_this, err);
+      }
+      return _this.findById(id, tableName, callback);
+    });
+  };
+
+  DB.prototype.findById = function(id, tableName, callback) {
+    var sql;
+    sql = "SELECT * FROM " + tableName + " where id = ?";
+    return this.db.get(sql, [id], callback);
+  };
+
+  DB.prototype.loadAllFor = function(tableName, callback) {
+    var sql;
+    sql = "SELECT * FROM " + tableName + " ORDER BY id";
+    return this.db.all(sql, callback);
+  };
+
   return DB;
 
 })();
 
-module.exports = DB;
+db = null;
+
+module.exports = function(env) {
+  return db || (db = new DB(env));
+};
 
 if (require.main === module) {
-  db = new DB('development', true, true);
+  db = new DB('development');
+  db.doMigrations();
 }
