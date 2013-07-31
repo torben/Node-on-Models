@@ -112,14 +112,13 @@ describe('Model', function() {
         return done();
       });
     });
-    it('should save a second record', function(done) {
+    it('should save a second record with create call', function(done) {
       var article2;
-      article2 = new Article({
+      return article2 = Article.create({
         author_id: 2,
         title: 'Damn right',
         body: 'Sometimes!'
-      });
-      return article2.save(function(err) {
+      }, function(err) {
         should.not.exist(err);
         article2.id.should.equal(2);
         article2.author_id.should.equal(2);

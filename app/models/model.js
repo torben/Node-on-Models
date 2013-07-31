@@ -99,15 +99,19 @@ Model = (function() {
     return model;
   };
 
-  function Model(options) {
-    var key, option;
-    if (options == null) {
-      options = {};
+  Model.create = function(attributes, callback) {
+    return new this(attributes).save(callback);
+  };
+
+  function Model(attributes) {
+    var attribute, key;
+    if (attributes == null) {
+      attributes = {};
     }
     this.defineProperties();
-    for (key in options) {
-      option = options[key];
-      this[key] = option;
+    for (key in attributes) {
+      attribute = attributes[key];
+      this[key] = attribute;
     }
     this;
   }
@@ -118,7 +122,7 @@ Model = (function() {
     saveCallback = function(err, row) {
       var changedFields, field, value;
       if (err != null) {
-        callback.call(_this, err);
+        return callback.call(_this, err);
       }
       changedFields = [];
       for (field in row) {
@@ -136,10 +140,11 @@ Model = (function() {
       values.push(this.get(field));
     }
     if (this.isNewRecord) {
-      return this.constructor.db.insertRow(this.constructor.tableName(), this.changedAttributes, values, saveCallback);
+      this.constructor.db.insertRow(this.constructor.tableName(), this.changedAttributes, values, saveCallback);
     } else {
-      return this.constructor.db.updateRow(this.constructor.tableName(), this.id, this.changedAttributes, values, saveCallback);
+      this.constructor.db.updateRow(this.constructor.tableName(), this.id, this.changedAttributes, values, saveCallback);
     }
+    return this;
   };
 
   Model.prototype.get = function(field) {

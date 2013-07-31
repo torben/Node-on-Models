@@ -63,19 +63,22 @@ class Model
     return model
 
 
+  @create: (attributes, callback) ->
+    new @(attributes).save callback
 
-  constructor: (options = {}) ->
+
+  constructor: (attributes = {}) ->
     @defineProperties()
 
-    for key, option of options
-      @[key] = option
+    for key, attribute of attributes
+      @[key] = attribute
 
     @
 
 
   save: (callback) ->
     saveCallback = (err, row) =>
-      callback.call @, err if err?
+      return callback.call @, err if err?
 
       changedFields = []
       for field, value of row
@@ -83,7 +86,7 @@ class Model
         changedFields.push(field)
       @changedAttributes = []
 
-      callback.call @, null, changedFields
+      return callback.call @, null, changedFields
 
 
     values = []
@@ -94,6 +97,8 @@ class Model
       @constructor.db.insertRow @constructor.tableName(), @changedAttributes, values, saveCallback
     else
       @constructor.db.updateRow @constructor.tableName(), @id, @changedAttributes, values, saveCallback
+
+    @
 
 
 

@@ -90,9 +90,8 @@ describe 'Model', ->
         done()
 
 
-    it 'should save a second record', (done) ->
-      article2 = new Article author_id: 2, title: 'Damn right', body: 'Sometimes!'
-      article2.save (err) ->
+    it 'should save a second record with create call', (done) ->
+      article2 = Article.create author_id: 2, title: 'Damn right', body: 'Sometimes!', (err) ->
         should.not.exist(err)
 
         article2.id.should.equal 2
