@@ -5,6 +5,7 @@
 
 var app = require('../app');
 var Article = require('../app/models/article')
+var Navigation = require('../app/models/navigation')
 
 exports.index = function(req, res) {
   var io = app.io;
@@ -14,6 +15,13 @@ exports.index = function(req, res) {
         socket.emit('articles', { article: article.toJSON() });
       });
     });
+
+    Navigation.all(function(err, navigations) {
+      navigations.forEach(function(navigation) {
+        socket.emit('navigations', { navigation: navigation.toJSON() });
+      });
+    });
+
     socket.on('my other event', function (data) {
       console.log(data);
     });
