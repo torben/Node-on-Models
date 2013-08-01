@@ -3,7 +3,8 @@ namespace('runtime');
 
 $(function() {
   tt.runtime.router = new tt.routers.MainRouter;
-  return Backbone.history.start({
+  Backbone.history.start({
     pushState: true
   });
+  return tt.runtime.remoteDataHandler = new RemoteDataHander();
 });
