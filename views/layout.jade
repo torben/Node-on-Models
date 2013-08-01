@@ -17,14 +17,24 @@ html(lang="en")
 
     script(type='text/javascript', src='/javascripts/routers/main_router.js')
 
+    script(type='text/javascript', src='/javascripts/collections/main_collection.js')
+    script(type='text/javascript', src='/javascripts/collections/navigations.js')
+
+    script(type='text/javascript', src='/javascripts/models/main_model.js')
+    script(type='text/javascript', src='/javascripts/models/navigation.js')
+    script(type='text/javascript', src='/javascripts/models/article.js')
+
+    script(type='text/javascript', src='/javascripts/views/main_view.js')
+    script(type='text/javascript', src='/javascripts/views/navigation_view.js')
+    script(type='text/javascript', src='/javascripts/views/article_view.js')
+
     script(type='text/javascript', src='/javascripts/runtime/bootstrap.js')
 
     script(type='text/javascript', src='/socket.io/socket.io.js')
     script(type='text/javascript').
-      var socket = io.connect('http://localhost');
-      socket.on('articles', function (data) {
-        //console.log(data);
-        socket.emit('my other event', { my: 'data' });
+      tt.runtime.socket = io.connect('http://localhost');
+      tt.runtime.socket.on('articles', function (data) {
+        console.log(data);
       });
   body
     nav.nav

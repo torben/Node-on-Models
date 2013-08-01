@@ -7,8 +7,7 @@ class tt.routers.MainRouter extends Backbone.Router
 
 
   initialize: ->
-    console.log "da isser"
-    # nothing...
+    @navigationView = new tt.views.NavigationView()
 
 
   index: ->

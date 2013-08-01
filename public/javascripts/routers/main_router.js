@@ -19,7 +19,7 @@ tt.routers.MainRouter = (function(_super) {
   };
 
   MainRouter.prototype.initialize = function() {
-    return console.log("da isser");
+    return this.navigationView = new tt.views.NavigationView();
   };
 
   MainRouter.prototype.index = function() {
