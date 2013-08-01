@@ -1,0 +1,33 @@
+doctype 5
+html(lang="en")
+  head
+    title= title
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(type='text/javascript').
+      document.write('<script src="/javascripts/lib/' +
+      ('__proto__' in {} ? 'zepto' : 'jquery') +
+      '.js"><\/script>')
+
+    script(type='text/javascript', src='/javascripts/lib/underscore.js')
+    script(type='text/javascript', src='/javascripts/lib/backbone.js')
+
+    script(type='text/javascript', src='/javascripts/helpers/namespace.js')
+
+    script(type='text/javascript', src='/javascripts/routers/main_router.js')
+
+    script(type='text/javascript', src='/javascripts/runtime/bootstrap.js')
+
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    script(type='text/javascript').
+      var socket = io.connect('http://localhost');
+      socket.on('articles', function (data) {
+        //console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+  body
+    nav.nav
+    .main-container
+      block body
+    footer.footer

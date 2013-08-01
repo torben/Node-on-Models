@@ -175,6 +175,17 @@ Model = (function() {
     });
   };
 
+  Model.prototype.toJSON = function() {
+    var attributes, key, value, _ref1;
+    attributes = {};
+    _ref1 = this.constructor.fields();
+    for (key in _ref1) {
+      value = _ref1[key];
+      attributes[value] = this.get(value);
+    }
+    return attributes;
+  };
+
   return Model;
 
 })();

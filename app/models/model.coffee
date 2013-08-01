@@ -121,6 +121,13 @@ class Model
           set: (value) => @set(field, value)
           enumerable: true
 
+
+  toJSON: ->
+    attributes = {}
+    for key, value of @constructor.fields()
+      attributes[value] = @get(value)
+    attributes
+
     
 
 Model.fields()
