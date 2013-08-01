@@ -102,7 +102,7 @@ DB = (function() {
         return this.db.get(this.checkTableSql, migration.tableName, function(err, row) {
           var field, _i, _len, _ref;
           if ((err != null) || (row != null)) {
-            callback.call(_this, err);
+            callback.call(_this, err, index + 1);
             return;
           }
           sql = "CREATE TABLE " + migration.tableName + "(id INTEGER PRIMARY KEY";
@@ -118,6 +118,8 @@ DB = (function() {
                   return "INTEGER";
                 case "text":
                   return "TEXT";
+                case "boolean":
+                  return "BOOLEAN";
                 default:
                   throw new Error("Field type not supported.");
               }

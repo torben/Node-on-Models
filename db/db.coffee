@@ -69,7 +69,7 @@ class DB
       when "createTable"
         @db.get @checkTableSql, migration.tableName, (err, row) =>
           if err? || row?
-            callback.call(@, err)
+            callback.call(@, err, index+1)
             return
 
           sql = "CREATE TABLE #{migration.tableName}(id INTEGER PRIMARY KEY"
@@ -79,6 +79,7 @@ class DB
               when "string"  then "VARCHAR(255)"
               when "integer" then "INTEGER"
               when "text"    then "TEXT"
+              when "boolean" then "BOOLEAN"
               else throw new Error("Field type not supported.")
 
           sql += ");"
