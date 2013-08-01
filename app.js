@@ -28,7 +28,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.all('*', routes.index);
+app.get('*', routes.index);
 
 var server = http.createServer(app);
 
