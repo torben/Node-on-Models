@@ -6,9 +6,16 @@
 var express = require('express')
   , routes = require('./routes/index')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , sass = require("node-sass");
 
 var app = express();
+
+app.use(sass.middleware({
+  src:  __dirname + '/app/assets',
+  dest: path.join(__dirname, 'public'),
+  debug: true
+}));
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -36,6 +43,6 @@ server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var io = require('socket.io').listen(server);
+var sio = require('./app/observer/socketio')(server)
 
-exports.io = io;
+//exports.io = io;
