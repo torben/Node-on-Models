@@ -2,9 +2,22 @@
 namespace('runtime');
 
 $(function() {
+  var checkScrollPosition;
+  checkScrollPosition = function() {
+    if (window.pageYOffset <= 0) {
+      $("#nav-begin-line").show();
+      return $(".nav").removeClass("shadow");
+    } else {
+      $("#nav-begin-line").hide();
+      return $(".nav").addClass("shadow");
+    }
+  };
+  checkScrollPosition();
+  $(window).on("scroll", function(e) {
+    return checkScrollPosition();
+  });
   tt.runtime.router = new tt.routers.MainRouter;
-  Backbone.history.start({
+  return Backbone.history.start({
     pushState: true
   });
-  return tt.runtime.remoteDataHandler = new RemoteDataHander();
 });

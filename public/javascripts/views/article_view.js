@@ -13,8 +13,15 @@ tt.views.ArticleView = (function(_super) {
     return _ref;
   }
 
+  ArticleView.prototype.template = _.template($('#article_template').html());
+
   ArticleView.prototype.initialize = function(options) {
     return ArticleView.__super__.initialize.call(this, options);
+  };
+
+  ArticleView.prototype.render = function() {
+    this.$el.html(this.template(this.model));
+    return this;
   };
 
   return ArticleView;

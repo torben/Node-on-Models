@@ -1,4 +1,8 @@
 extends ../layout
 
 block body
-  
+  script(type='text/template', id='article_template').
+    <h1><%= title %></h1>
+    <%= content %>
+  script(type='text/template', id='navigation_template').
+    <a href='/articles/<%= permalink %>'><%= title %></a>

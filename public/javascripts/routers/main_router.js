@@ -19,7 +19,17 @@ tt.routers.MainRouter = (function(_super) {
   };
 
   MainRouter.prototype.initialize = function() {
-    return this.navigationView = new tt.views.NavigationView();
+    var remoteDataHandler;
+    this.navigationView = new tt.views.NavigationView();
+    this.articles = new tt.collections.Articles();
+    this.navigations = new tt.collections.Navigations();
+    this.navigationsView = new tt.views.NavigationsView({
+      collection: this.navigations
+    });
+    $(".navigations").html(this.navigationsView.render().el);
+    remoteDataHandler = new tt.helpers.RemoteDataHandler();
+    remoteDataHandler.observe("articles", this.articles);
+    return remoteDataHandler.observe("navigations", this.navigations);
   };
 
   MainRouter.prototype.index = function() {
@@ -27,7 +37,9 @@ tt.routers.MainRouter = (function(_super) {
   };
 
   MainRouter.prototype.article = function(id) {
-    return console.log(id);
+    return this.articles.getModel(id, function(model) {
+      return console.log(model);
+    });
   };
 
   return MainRouter;

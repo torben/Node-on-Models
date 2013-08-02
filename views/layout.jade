@@ -14,30 +14,39 @@ html(lang="en")
     script(type='text/javascript', src='/javascripts/lib/backbone.js')
 
     script(type='text/javascript', src='/javascripts/helpers/namespace.js')
-
-    script(type='text/javascript', src='/javascripts/routers/main_router.js')
-
-    script(type='text/javascript', src='/javascripts/collections/main_collection.js')
-    script(type='text/javascript', src='/javascripts/collections/navigations.js')
-
-    script(type='text/javascript', src='/javascripts/models/main_model.js')
-    script(type='text/javascript', src='/javascripts/models/navigation.js')
-    script(type='text/javascript', src='/javascripts/models/article.js')
-
-    script(type='text/javascript', src='/javascripts/views/main_view.js')
-    script(type='text/javascript', src='/javascripts/views/navigation_view.js')
-    script(type='text/javascript', src='/javascripts/views/article_view.js')
-
-    script(type='text/javascript', src='/javascripts/runtime/bootstrap.js')
-
-    script(type='text/javascript', src='/socket.io/socket.io.js')
-    script(type='text/javascript').
-      tt.runtime.socket = io.connect('http://localhost');
-      tt.runtime.socket.on('articles', function (data) {
-        console.log(data);
-      });
+    script(type='text/javascript', src='/javascripts/helpers/remote_data_handler.js')
   body
-    nav.nav
+    nav.nav.shadow
+      .container
+        ul.left
+          li
+            a TT
+
+        .navigations
+        .clear
+
     .main-container
-      block body
+      #nav-begin-line
+      .content
+        block body
     footer.footer
+
+
+script(type='text/javascript', src='/javascripts/routers/main_router.js')
+
+script(type='text/javascript', src='/javascripts/collections/main_collection.js')
+script(type='text/javascript', src='/javascripts/collections/articles.js')
+script(type='text/javascript', src='/javascripts/collections/navigations.js')
+
+script(type='text/javascript', src='/javascripts/models/main_model.js')
+script(type='text/javascript', src='/javascripts/models/navigation.js')
+script(type='text/javascript', src='/javascripts/models/article.js')
+
+script(type='text/javascript', src='/javascripts/views/main_view.js')
+script(type='text/javascript', src='/javascripts/views/navigations_view.js')
+script(type='text/javascript', src='/javascripts/views/navigation_view.js')
+script(type='text/javascript', src='/javascripts/views/article_view.js')
+
+script(type='text/javascript', src='/javascripts/runtime/bootstrap.js')
+
+script(type='text/javascript', src='/socket.io/socket.io.js')

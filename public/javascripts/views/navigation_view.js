@@ -13,11 +13,16 @@ tt.views.NavigationView = (function(_super) {
     return _ref;
   }
 
+  NavigationView.prototype.template = _.template($('#navigation_template').html());
+
+  NavigationView.prototype.tagName = 'li';
+
   NavigationView.prototype.initialize = function(options) {
     return NavigationView.__super__.initialize.call(this, options);
   };
 
   NavigationView.prototype.render = function() {
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   };
 

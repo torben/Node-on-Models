@@ -8,6 +8,15 @@ class tt.routers.MainRouter extends Backbone.Router
 
   initialize: ->
     @navigationView = new tt.views.NavigationView()
+    @articles = new tt.collections.Articles()
+    @navigations = new tt.collections.Navigations()
+
+    @navigationsView = new tt.views.NavigationsView(collection: @navigations)
+    $(".navigations").html(@navigationsView.render().el)
+
+    remoteDataHandler = new tt.helpers.RemoteDataHandler()
+    remoteDataHandler.observe "articles", @articles
+    remoteDataHandler.observe "navigations", @navigations
 
 
   index: ->
@@ -15,4 +24,6 @@ class tt.routers.MainRouter extends Backbone.Router
 
 
   article: (id) ->
-    console.log(id)
+    @articles.getModel id, (model) ->
+      console.log model
+      

@@ -13,6 +13,45 @@ tt.collections.MainCollection = (function(_super) {
     return _ref;
   }
 
+  MainCollection.prototype.waitingQueue = [];
+
+  MainCollection.prototype.initialize = function() {
+    return this.on('add', this.modelAdded);
+  };
+
+  MainCollection.prototype.modelAdded = function(model) {
+    var queueEntry, _i, _len, _ref1, _results;
+    _ref1 = this.waitingQueue;
+    _results = [];
+    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      queueEntry = _ref1[_i];
+      if (queueEntry.id === model.id) {
+        _results.push(queueEntry.callback(model));
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
+  };
+
+  MainCollection.prototype.getModel = function(id, callback) {
+    var model, queueEntry, _i, _len, _ref1;
+    model = this.get(id);
+    if (model != null) {
+      return callback(model);
+    }
+    _ref1 = this.waitingQueue;
+    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      queueEntry = _ref1[_i];
+      if (queueEntry.id = id) {
+        return;
+      }
+    }
+    return this.waitingQueue.push({
+      id: id
+    }, callback, callback);
+  };
+
   return MainCollection;
 
 })(Backbone.Collection);
