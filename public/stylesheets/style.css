@@ -18,12 +18,16 @@ html, body {
   background-image: -webkit-linear-gradient(top, #ffffff 0, rgba(255, 255, 255, 0.85) 100%);
   border: none;
   z-index: 99999; }
+  .nav a {
+    color: #444a51;
+    text-decoration: none; }
   .nav.shadow {
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
   .nav .container {
-    width: 980px;
+    width: 940px;
+    padding: 0px 20px;
     margin: 0px auto; }
     .nav .container ul {
       padding: 0px;
@@ -47,10 +51,19 @@ html, body {
 
 #nav-begin-line {
   margin-top: -10px;
-  background: url(/images/nav_border_bg.png);
+  background: url(/images/nav_border_bg.png) 50% 0% no-repeat;
   position: absolute;
-  width: 980px;
+  width: 100%;
   height: 80px; }
+
+.footer {
+  background: url(/images/nav_border_bg.png) no-repeat;
+  width: 940px;
+  margin: 30px auto;
+  padding: 20px 20px;
+  height: 40px;
+  color: silver;
+  font-size: 11px; }
 
 .animated {
   -webkit-animation-fill-mode: both;
@@ -685,12 +698,35 @@ html, body {
 
 .main-container {
   padding: 60px 0px 30px;
-  width: 980px;
-  margin: 0px auto;
   min-height: 100%; }
-  .main-container .content {
+  .main-container .content-wrapper {
     position: absolute;
-    width: 980px; }
+    width: 100%; }
+    .main-container .content-wrapper .content {
+      margin: 0px auto;
+      width: 940px;
+      padding: 0px 20px; }
+    .main-container .content-wrapper .highlight {
+      height: 359px;
+      background: url(/images/stoerer-bg.png);
+      padding: 20px 0px;
+      margin: 40px 0px; }
+      .main-container .content-wrapper .highlight .image-container {
+        float: left;
+        width: 330px;
+        height: 359px; }
+      .main-container .content-wrapper .highlight .subcontent-container {
+        float: left;
+        width: 590px;
+        padding-left: 20px;
+        height: 359px;
+        text-shadow: #1c212a 0px 1px 0px;
+        color: #bbbfc7;
+        font-size: 16px;
+        line-height: 22px; }
+        .main-container .content-wrapper .highlight .subcontent-container h3 {
+          color: white;
+          font-size: 17px; }
 
 h1 {
   font-family: "Proxima Nova", "helvetica neue", helvetica, arial;

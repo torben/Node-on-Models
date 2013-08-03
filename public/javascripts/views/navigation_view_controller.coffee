@@ -21,8 +21,12 @@ class tt.viewControllers.NavigationViewController
     model = new Backbone.Model(view: view)
     @collection.add model
 
-    $('.main-container').prepend(view.render().el)
-    view.$el.addClass("bounceInLeft") if @collection.length > 1
+    timeout = if @collection.length > 1 then 300 else 1
+
+    window.setTimeout =>
+      view.render().$el.insertAfter $("#nav-begin-line")
+      view.$el.addClass("bounceInLeft") if @collection.length > 1
+    , timeout
 
     if @collection.length > 1
       for i in [@collection.length-1..0]
@@ -30,6 +34,6 @@ class tt.viewControllers.NavigationViewController
         oldView = model.get "view"
         if i == @collection.length - 2
           oldView.$el.removeClass("bounceInLeft").addClass("bounceOutRight")
-          window.setTimeout (=>removeModel(model)), 1000
+          window.setTimeout (=>removeModel(model)), 1300
         else if i < @collection.length - 3
           @removeModel(model)

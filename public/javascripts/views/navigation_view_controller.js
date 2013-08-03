@@ -20,7 +20,7 @@ tt.viewControllers.NavigationViewController = (function() {
   }
 
   NavigationViewController.prototype.pushView = function(view) {
-    var i, model, oldView, removeModel, _i, _ref, _results,
+    var i, model, oldView, removeModel, timeout, _i, _ref, _results,
       _this = this;
     removeModel = function(model) {
       _this.collection.remove(model);
@@ -30,10 +30,13 @@ tt.viewControllers.NavigationViewController = (function() {
       view: view
     });
     this.collection.add(model);
-    $('.main-container').prepend(view.render().el);
-    if (this.collection.length > 1) {
-      view.$el.addClass("bounceInLeft");
-    }
+    timeout = this.collection.length > 1 ? 300 : 1;
+    window.setTimeout(function() {
+      view.render().$el.insertAfter($("#nav-begin-line"));
+      if (_this.collection.length > 1) {
+        return view.$el.addClass("bounceInLeft");
+      }
+    }, timeout);
     if (this.collection.length > 1) {
       _results = [];
       for (i = _i = _ref = this.collection.length - 1; _ref <= 0 ? _i <= 0 : _i >= 0; i = _ref <= 0 ? ++_i : --_i) {
@@ -43,7 +46,7 @@ tt.viewControllers.NavigationViewController = (function() {
           oldView.$el.removeClass("bounceInLeft").addClass("bounceOutRight");
           _results.push(window.setTimeout((function() {
             return removeModel(model);
-          }), 1000));
+          }), 1300));
         } else if (i < this.collection.length - 3) {
           _results.push(this.removeModel(model));
         } else {

@@ -2,7 +2,7 @@ namespace 'views'
 
 class tt.views.ArticleView extends tt.views.MainView
   template: _.template($('#article_template').html())
-  className: 'content animated'
+  className: 'content-wrapper animated'
 
   initialize: (options) ->
     super(options)

@@ -15,46 +15,12 @@ html, body {
 }
 
 $width: 980px;
+$innerWidth: 940px;
+$innerPadding: 20px;
 
 @import "navigation.scss";
 @import "animate.scss";
-
-.main-container {
-  padding: 60px 0px 30px;
-  width: $width;
-  margin: 0px auto;
-  min-height:100%;
-
-  .content {
-    position: absolute;
-    width: $width;
-  }
-}
-
-h1 {
-  font-family: "Proxima Nova","helvetica neue",helvetica,arial;
-  font-size: 50px;
-  color: #000;
-  font-weight: bold;
-  background: -webkit-gradient(linear,left 20%,left 90%,from(black),to(#5c5c5c));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height:60px;
-  margin: 10px 0px;
-}
-
-h2 {
-  color: rgb(153, 153, 153);
-  display: block;
-  font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 25px;
-  font-weight: normal;
-  height: 25px;
-  line-height: 25px;
-  margin: 4px 0px 0px 0px;
-  padding: 0px;
-  vertical-align: baseline;
-}
+@import "article.scss";
 
 .clear {
   clear: both;

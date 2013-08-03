@@ -9,6 +9,11 @@
   border: none;
   z-index: 99999;
 
+  a {
+    color: rgb(68, 74, 81);
+    text-decoration: none;
+  }
+
   &.shadow {
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
     -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
@@ -16,7 +21,8 @@
   }
 
   .container {
-    width: $width;
+    width: $innerWidth;
+    padding: 0px $innerPadding;
     margin: 0px auto;
 
     ul {
@@ -54,8 +60,18 @@
 
 #nav-begin-line {
   margin-top: -10px;
-  background: url(/images/nav_border_bg.png);
+  background: url(/images/nav_border_bg.png) 50% 0% no-repeat;
   position: absolute;
-  width: $width;
+  width: 100%;
   height: 80px;
+}
+
+.footer {
+  background: url(/images/nav_border_bg.png) no-repeat;
+  width: $innerWidth;
+  margin: 30px auto;
+  padding: 20px $innerPadding;
+  height: 40px;
+  color: #c0c0c0;
+  font-size: 11px;
 }
