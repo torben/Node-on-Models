@@ -20,7 +20,7 @@ class tt.routers.MainRouter extends Backbone.Router
 
 
   index: ->
-    #console.log "called!"
+    @navigate "articles/home", true
 
 
   article: (permalink) ->

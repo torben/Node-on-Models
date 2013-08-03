@@ -33,7 +33,9 @@ tt.routers.MainRouter = (function(_super) {
     return remoteDataHandler.observe("navigations", this.navigations);
   };
 
-  MainRouter.prototype.index = function() {};
+  MainRouter.prototype.index = function() {
+    return this.navigate("articles/home", true);
+  };
 
   MainRouter.prototype.article = function(permalink) {
     var _this = this;
