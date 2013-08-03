@@ -9,14 +9,21 @@ class tt.collections.MainCollection extends Backbone.Collection
 
   modelAdded: (model) ->
     for queueEntry in @waitingQueue
-      queueEntry.callback(model) if queueEntry.id == model.id
+      queueEntry.callback(model) if model.get(queueEntry.type) == queueEntry.value
 
 
   getModel: (id, callback) ->
-    model = @get(id)
+    @getModelBy 'id', id, callback
+
+
+  getModelBy: (type, value, callback) ->
+    obj = {}
+    obj[type] = value
+
+    model = @where(obj)[0]
     return callback(model) if model?
 
     for queueEntry in @waitingQueue
-      return if queueEntry.id = id
+      return if queueEntry.type == type && queueEntry.value == value
 
-    @waitingQueue.push id: id, callback, callback
+    @waitingQueue.push type: type, value: value, callback: callback

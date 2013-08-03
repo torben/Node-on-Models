@@ -25,7 +25,7 @@ tt.collections.MainCollection = (function(_super) {
     _results = [];
     for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
       queueEntry = _ref1[_i];
-      if (queueEntry.id === model.id) {
+      if (model.get(queueEntry.type) === queueEntry.value) {
         _results.push(queueEntry.callback(model));
       } else {
         _results.push(void 0);
@@ -35,21 +35,29 @@ tt.collections.MainCollection = (function(_super) {
   };
 
   MainCollection.prototype.getModel = function(id, callback) {
-    var model, queueEntry, _i, _len, _ref1;
-    model = this.get(id);
+    return this.getModelBy('id', id, callback);
+  };
+
+  MainCollection.prototype.getModelBy = function(type, value, callback) {
+    var model, obj, queueEntry, _i, _len, _ref1;
+    obj = {};
+    obj[type] = value;
+    model = this.where(obj)[0];
     if (model != null) {
       return callback(model);
     }
     _ref1 = this.waitingQueue;
     for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
       queueEntry = _ref1[_i];
-      if (queueEntry.id = id) {
+      if (queueEntry.type === type && queueEntry.value === value) {
         return;
       }
     }
     return this.waitingQueue.push({
-      id: id
-    }, callback, callback);
+      type: type,
+      value: value,
+      callback: callback
+    });
   };
 
   return MainCollection;
