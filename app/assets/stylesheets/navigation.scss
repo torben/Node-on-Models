@@ -12,7 +12,11 @@
   a {
     color: rgb(68, 74, 81);
     text-decoration: none;
+
+    &:hover { text-decoration: underline; }
   }
+
+  li.active a { text-decoration: underline; }
 
   &.shadow {
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
@@ -72,6 +76,17 @@
   margin: 30px auto;
   padding: 20px $innerPadding;
   height: 40px;
+
   color: #c0c0c0;
   font-size: 11px;
+
+  a {
+    color: #c0c0c0;
+    font-size: 11px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

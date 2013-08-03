@@ -9,6 +9,13 @@ html, body {
   line-height: 22px;
   color: #555555; }
 
+a {
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 22px;
+  color: #555555;
+  text-decoration: underline; }
+
 .nav {
   position: fixed;
   top: 0px;
@@ -21,6 +28,10 @@ html, body {
   .nav a {
     color: #444a51;
     text-decoration: none; }
+    .nav a:hover {
+      text-decoration: underline; }
+  .nav li.active a {
+    text-decoration: underline; }
   .nav.shadow {
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
@@ -64,6 +75,12 @@ html, body {
   height: 40px;
   color: silver;
   font-size: 11px; }
+  .footer a {
+    color: silver;
+    font-size: 11px;
+    text-decoration: none; }
+    .footer a:hover {
+      text-decoration: underline; }
 
 .animated {
   -webkit-animation-fill-mode: both;
@@ -698,35 +715,64 @@ html, body {
 
 .main-container {
   padding: 60px 0px 30px;
-  min-height: 100%; }
+  min-height: 100%;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
   .main-container .content-wrapper {
-    position: absolute;
+    position: relative;
     width: 100%; }
+    .main-container .content-wrapper.bounceOutRight {
+      position: absolute;
+      top: 60px; }
     .main-container .content-wrapper .content {
       margin: 0px auto;
       width: 940px;
       padding: 0px 20px; }
+    .main-container .content-wrapper .margin-top {
+      margin-top: 30px; }
+    .main-container .content-wrapper .subcontent-container {
+      float: left;
+      width: 940px;
+      text-shadow: white 0px 1px 0px;
+      font-size: 16px;
+      line-height: 22px; }
+      .main-container .content-wrapper .subcontent-container img {
+        max-width: 330px;
+        display: block;
+        float: left;
+        margin-right: 20px; }
+      .main-container .content-wrapper .subcontent-container.big img {
+        max-width: 150px; }
+      .main-container .content-wrapper .subcontent-container.images img {
+        max-width: 280px; }
+      .main-container .content-wrapper .subcontent-container h3 {
+        margin-top: 0px;
+        font-size: 17px; }
     .main-container .content-wrapper .highlight {
       height: 359px;
       background: url(/images/stoerer-bg.png);
       padding: 20px 0px;
       margin: 40px 0px; }
       .main-container .content-wrapper .highlight .image-container {
-        float: left;
-        width: 330px;
         height: 359px; }
       .main-container .content-wrapper .highlight .subcontent-container {
-        float: left;
-        width: 590px;
-        padding-left: 20px;
-        height: 359px;
         text-shadow: #1c212a 0px 1px 0px;
         color: #bbbfc7;
-        font-size: 16px;
-        line-height: 22px; }
+        height: 359px; }
+        .main-container .content-wrapper .highlight .subcontent-container a {
+          color: #bbbfc7; }
         .main-container .content-wrapper .highlight .subcontent-container h3 {
-          color: white;
-          font-size: 17px; }
+          color: white; }
+          .main-container .content-wrapper .highlight .subcontent-container h3 a {
+            color: white;
+            font-size: 17px; }
+    .main-container .content-wrapper .logo-list img {
+      max-width: 150px;
+      margin-left: 10px;
+      margin-bottom: 30px; }
 
 h1 {
   font-family: "Proxima Nova", "helvetica neue", helvetica, arial;
