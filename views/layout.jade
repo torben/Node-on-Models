@@ -8,9 +8,9 @@ html(lang="en")
     block templates
 
     script(type='text/javascript').
-      document.write('<script src="/javascripts/lib/' +
-      ('__proto__' in {} ? 'zepto' : 'jquery') +
-      '.js"><\/script>')
+      var lib = (('__proto__' in {}) ? 'zepto' : 'jquery');
+      document.write('<script src="/javascripts/lib/'+lib+'.js"><\/script>');
+      document.write('<script src="/javascripts/lib/'+lib+'.scrollto.js"><\/script>');
 
     script(type='text/javascript', src='/javascripts/lib/underscore.js')
     script(type='text/javascript', src='/javascripts/lib/backbone.js')
@@ -22,7 +22,7 @@ html(lang="en")
       .container
         ul.left
           li
-            a TT
+            a(href="/articles/home", rel="backbone") TT
 
         .navigations
         .clear
@@ -31,7 +31,7 @@ html(lang="en")
       #nav-begin-line
       block body
     footer.footer
-      &copy; 2013 Torben Toepper
+      a(href='http://twitter.com/torben_tt') &copy; 2013 Torben Toepper
 
 
 script(type='text/javascript', src='/javascripts/routers/main_router.js')

@@ -4,6 +4,7 @@ class tt.views.NavigationsView extends tt.views.MainView
   tagName: 'ul'
   className: 'right'
   collection: tt.collections.Navigations
+  views: []
 
   initialize: (options) ->
     super options
@@ -22,9 +23,16 @@ class tt.views.NavigationsView extends tt.views.MainView
 
   addOne: (model) ->
     view = new tt.views.NavigationView(model: model, router: @router)
+    @views.push(view) if @views.indexOf(view) == -1
+
     @$el.append(view.render().el)
     if @$el.find("li").length == 1
       view.$el.addClass "first"
+
+
+  setActive: (id) ->
+    for view in @views
+      view.model.set("active", view.model.get("id") == id)
 
 
   render: ->

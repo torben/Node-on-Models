@@ -19,6 +19,8 @@ tt.views.NavigationsView = (function(_super) {
 
   NavigationsView.prototype.collection = tt.collections.Navigations;
 
+  NavigationsView.prototype.views = [];
+
   NavigationsView.prototype.initialize = function(options) {
     NavigationsView.__super__.initialize.call(this, options);
     _.bindAll(this, 'addAll', 'addOne');
@@ -37,10 +39,24 @@ tt.views.NavigationsView = (function(_super) {
       model: model,
       router: this.router
     });
+    if (this.views.indexOf(view) === -1) {
+      this.views.push(view);
+    }
     this.$el.append(view.render().el);
     if (this.$el.find("li").length === 1) {
       return view.$el.addClass("first");
     }
+  };
+
+  NavigationsView.prototype.setActive = function(id) {
+    var view, _i, _len, _ref1, _results;
+    _ref1 = this.views;
+    _results = [];
+    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      view = _ref1[_i];
+      _results.push(view.model.set("active", view.model.get("id") === id));
+    }
+    return _results;
   };
 
   NavigationsView.prototype.render = function() {

@@ -9,5 +9,7 @@ block templates
     </div>
 
     <%= body %>
+
+
   script(type='text/template', id='navigation_template').
-    <a href='/articles/<%= permalink %>'><%= title %></a>
+    <a href="/articles/<%= permalink %>" rel="backbone"><%= title %></a>
