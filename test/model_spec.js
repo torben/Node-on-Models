@@ -138,6 +138,17 @@ describe('Model', function() {
         return done();
       });
     });
+    it('should not save a unchanged model', function(done) {
+      var article2;
+      return article2 = Article.find(id, function(err) {
+        should.not.exist(err);
+        return article2.save(function(saveErr, changedFields) {
+          should.not.exist(saveErr);
+          changedFields.should.be.empty;
+          return done();
+        });
+      });
+    });
     it('should not find a non existing record', function(done) {
       var article2;
       return article2 = Article.find(999, function(err) {

@@ -39,7 +39,10 @@ class Model
       return callback.call @, err if err?
 
       for record in rows
-        records.push new @(record)
+        m = new @(record)
+        m.isNewRecord = false
+        m.changedAttributes = []
+        records.push m
 
       callback.call @, null, records
 
@@ -77,6 +80,8 @@ class Model
 
 
   save: (callback) ->
+    return callback.call @, null, [] if @changedAttributes.length == 0
+
     saveCallback = (err, row) =>
       return callback.call @, err if err?
 

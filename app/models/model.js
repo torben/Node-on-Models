@@ -63,13 +63,16 @@ Model = (function() {
       _this = this;
     records = [];
     this.db.loadAllFor(this.tableName(), function(err, rows) {
-      var record, _i, _len;
+      var m, record, _i, _len;
       if (err != null) {
         return callback.call(_this, err);
       }
       for (_i = 0, _len = rows.length; _i < _len; _i++) {
         record = rows[_i];
-        records.push(new _this(record));
+        m = new _this(record);
+        m.isNewRecord = false;
+        m.changedAttributes = [];
+        records.push(m);
       }
       return callback.call(_this, null, records);
     });
@@ -119,6 +122,9 @@ Model = (function() {
   Model.prototype.save = function(callback) {
     var field, saveCallback, values, _i, _len, _ref1,
       _this = this;
+    if (this.changedAttributes.length === 0) {
+      return callback.call(this, null, []);
+    }
     saveCallback = function(err, row) {
       var changedFields, field, value;
       if (err != null) {

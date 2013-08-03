@@ -115,6 +115,17 @@ describe 'Model', ->
         done()
 
 
+    it 'should not save a unchanged model', (done) ->
+      article2 = Article.find id, (err) ->
+        should.not.exist(err)
+
+        article2.save (saveErr, changedFields) ->
+          should.not.exist(saveErr)
+          changedFields.should.be.empty
+
+          done()
+
+
     it 'should not find a non existing record', (done) ->
       article2 = Article.find 999, (err) ->
         should.exist(err)
