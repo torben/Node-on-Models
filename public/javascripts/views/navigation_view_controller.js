@@ -31,7 +31,9 @@ tt.viewControllers.NavigationViewController = (function() {
     });
     this.collection.add(model);
     $('.main-container').prepend(view.render().el);
-    view.$el.addClass("animated bounceInLeft");
+    if (this.collection.length > 1) {
+      view.$el.addClass("bounceInLeft");
+    }
     if (this.collection.length > 1) {
       _results = [];
       for (i = _i = _ref = this.collection.length - 1; _ref <= 0 ? _i <= 0 : _i >= 0; i = _ref <= 0 ? ++_i : --_i) {

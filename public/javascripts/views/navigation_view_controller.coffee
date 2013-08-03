@@ -22,7 +22,7 @@ class tt.viewControllers.NavigationViewController
     @collection.add model
 
     $('.main-container').prepend(view.render().el)
-    view.$el.addClass("animated bounceInLeft")
+    view.$el.addClass("bounceInLeft") if @collection.length > 1
 
     if @collection.length > 1
       for i in [@collection.length-1..0]
