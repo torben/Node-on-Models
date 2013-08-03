@@ -14,7 +14,7 @@ tt.routers.MainRouter = (function(_super) {
   }
 
   MainRouter.prototype.routes = {
-    "/articles/:id": "article",
+    "articles/:id": "article",
     "*page": "index"
   };
 
@@ -23,22 +23,28 @@ tt.routers.MainRouter = (function(_super) {
     this.navigationView = new tt.views.NavigationView();
     this.articles = new tt.collections.Articles();
     this.navigations = new tt.collections.Navigations();
-    this.navigationsView = new tt.views.NavigationsView({
-      collection: this.navigations
+    this.navigationViewController = new tt.viewControllers.NavigationViewController({
+      navigations: this.navigations,
+      router: this
     });
-    $(".navigations").html(this.navigationsView.render().el);
+    $(".navigations").html(this.navigationViewController.navigationView.render().el);
     remoteDataHandler = new tt.helpers.RemoteDataHandler();
     remoteDataHandler.observe("articles", this.articles);
     return remoteDataHandler.observe("navigations", this.navigations);
   };
 
-  MainRouter.prototype.index = function() {
-    return console.log("called!");
-  };
+  MainRouter.prototype.index = function() {};
 
-  MainRouter.prototype.article = function(id) {
-    return this.articles.getModel(id, function(model) {
-      return console.log(model);
+  MainRouter.prototype.article = function(permalink) {
+    var _this = this;
+    return this.navigations.getModelBy('permalink', permalink, function(navigation) {
+      return _this.articles.getModel(navigation.id, function(model) {
+        var view;
+        view = new tt.views.ArticleView({
+          model: model
+        });
+        return _this.navigationViewController.pushView(view);
+      });
     });
   };
 

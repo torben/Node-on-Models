@@ -2,7 +2,7 @@ namespace "routers"
 
 class tt.routers.MainRouter extends Backbone.Router
   routes:
-    "/articles/:id":  "article"
+    "articles/:id":  "article"
     "*page":          "index" # catch all
 
 
@@ -11,8 +11,8 @@ class tt.routers.MainRouter extends Backbone.Router
     @articles = new tt.collections.Articles()
     @navigations = new tt.collections.Navigations()
 
-    @navigationsView = new tt.views.NavigationsView(collection: @navigations)
-    $(".navigations").html(@navigationsView.render().el)
+    @navigationViewController = new tt.viewControllers.NavigationViewController(navigations: @navigations, router: @)
+    $(".navigations").html(@navigationViewController.navigationView.render().el)
 
     remoteDataHandler = new tt.helpers.RemoteDataHandler()
     remoteDataHandler.observe "articles", @articles
@@ -20,10 +20,11 @@ class tt.routers.MainRouter extends Backbone.Router
 
 
   index: ->
-    console.log "called!"
+    #console.log "called!"
 
 
-  article: (id) ->
-    @articles.getModel id, (model) ->
-      console.log model
-      
+  article: (permalink) ->
+    @navigations.getModelBy 'permalink', permalink, (navigation) =>
+      @articles.getModel navigation.id, (model) =>
+        view = new tt.views.ArticleView(model: model)
+        @navigationViewController.pushView(view)

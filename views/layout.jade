@@ -5,6 +5,8 @@ html(lang="en")
 
     link(rel='stylesheet', href='/stylesheets/style.css')
 
+    block templates
+
     script(type='text/javascript').
       document.write('<script src="/javascripts/lib/' +
       ('__proto__' in {} ? 'zepto' : 'jquery') +
@@ -41,6 +43,8 @@ script(type='text/javascript', src='/javascripts/collections/navigations.js')
 script(type='text/javascript', src='/javascripts/models/main_model.js')
 script(type='text/javascript', src='/javascripts/models/navigation.js')
 script(type='text/javascript', src='/javascripts/models/article.js')
+
+script(type='text/javascript', src='/javascripts/views/navigation_view_controller.js')
 
 script(type='text/javascript', src='/javascripts/views/main_view.js')
 script(type='text/javascript', src='/javascripts/views/navigations_view.js')
