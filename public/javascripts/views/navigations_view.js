@@ -22,6 +22,7 @@ tt.views.NavigationsView = (function(_super) {
   NavigationsView.prototype.initialize = function(options) {
     NavigationsView.__super__.initialize.call(this, options);
     _.bindAll(this, 'addAll', 'addOne');
+    this.router = options.router;
     this.collection.on('reset', this.addAll);
     return this.collection.on('add', this.addOne);
   };
@@ -33,7 +34,8 @@ tt.views.NavigationsView = (function(_super) {
   NavigationsView.prototype.addOne = function(model) {
     var view;
     view = new tt.views.NavigationView({
-      model: model
+      model: model,
+      router: this.router
     });
     this.$el.append(view.render().el);
     if (this.$el.find("li").length === 1) {

@@ -1,8 +1,10 @@
 extends ../layout
 
 block body
+  
+block templates
   script(type='text/template', id='article_template').
     <h1><%= title %></h1>
-    <%= content %>
+    <%= body %>
   script(type='text/template', id='navigation_template').
     <a href='/articles/<%= permalink %>'><%= title %></a>

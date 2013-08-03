@@ -17,8 +17,23 @@ tt.views.NavigationView = (function(_super) {
 
   NavigationView.prototype.tagName = 'li';
 
+  NavigationView.prototype.events = {
+    'click a': 'navigateTo'
+  };
+
   NavigationView.prototype.initialize = function(options) {
-    return NavigationView.__super__.initialize.call(this, options);
+    if (options == null) {
+      options = {};
+    }
+    NavigationView.__super__.initialize.call(this, options);
+    if (options) {
+      return this.router = options.router;
+    }
+  };
+
+  NavigationView.prototype.navigateTo = function(e) {
+    this.router.navigate($(e.currentTarget).attr("href"), true);
+    return false;
   };
 
   NavigationView.prototype.render = function() {

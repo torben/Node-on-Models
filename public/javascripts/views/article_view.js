@@ -15,12 +15,14 @@ tt.views.ArticleView = (function(_super) {
 
   ArticleView.prototype.template = _.template($('#article_template').html());
 
+  ArticleView.prototype.className = 'content';
+
   ArticleView.prototype.initialize = function(options) {
     return ArticleView.__super__.initialize.call(this, options);
   };
 
   ArticleView.prototype.render = function() {
-    this.$el.html(this.template(this.model));
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   };
 

@@ -10,6 +10,8 @@ class tt.views.NavigationsView extends tt.views.MainView
 
     _.bindAll @, 'addAll', 'addOne'
 
+    @router = options.router
+
     @collection.on 'reset', @addAll
     @collection.on 'add', @addOne
 
@@ -19,7 +21,7 @@ class tt.views.NavigationsView extends tt.views.MainView
 
 
   addOne: (model) ->
-    view = new tt.views.NavigationView(model: model)
+    view = new tt.views.NavigationView(model: model, router: @router)
     @$el.append(view.render().el)
     if @$el.find("li").length == 1
       view.$el.addClass "first"
