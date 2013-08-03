@@ -34,8 +34,9 @@ tt.viewControllers.NavigationViewController = (function() {
     window.setTimeout(function() {
       view.render().$el.insertAfter($("#nav-begin-line"));
       if (_this.collection.length > 1) {
-        return view.$el.addClass("bounceInLeft");
+        view.$el.addClass("bounceInLeft");
       }
+      return _this.navigationView.setActive(view.model.get("navigation_id"));
     }, timeout);
     if (this.collection.length > 1) {
       _results = [];

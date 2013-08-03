@@ -17,9 +17,7 @@ tt.views.NavigationView = (function(_super) {
 
   NavigationView.prototype.tagName = 'li';
 
-  NavigationView.prototype.events = {
-    'click a': 'navigateTo'
-  };
+  NavigationView.prototype.model = tt.models.Navigation;
 
   NavigationView.prototype.initialize = function(options) {
     if (options == null) {
@@ -27,13 +25,20 @@ tt.views.NavigationView = (function(_super) {
     }
     NavigationView.__super__.initialize.call(this, options);
     if (options) {
-      return this.router = options.router;
+      this.router = options.router;
+    }
+    _.bindAll(this, 'changeActive');
+    if (options.model != null) {
+      return this.model.on('change:active', this.changeActive);
     }
   };
 
-  NavigationView.prototype.navigateTo = function(e) {
-    this.router.navigate($(e.currentTarget).attr("href"), true);
-    return false;
+  NavigationView.prototype.changeActive = function(model) {
+    if (model.get("active") === true) {
+      return this.$el.addClass("active");
+    } else {
+      return this.$el.removeClass("active");
+    }
   };
 
   NavigationView.prototype.render = function() {

@@ -3,19 +3,23 @@ namespace 'views'
 class tt.views.NavigationView extends tt.views.MainView
   template: _.template($('#navigation_template').html())
   tagName: 'li'
-  events: {
-    'click a': 'navigateTo'
-  }
+  model: tt.models.Navigation
 
   initialize: (options = {}) ->
     super(options)
 
     @router = options.router if options
 
+    _.bindAll @, 'changeActive'
+    @model.on 'change:active', @changeActive if options.model?
 
-  navigateTo: (e) ->
-    @router.navigate($(e.currentTarget).attr("href"), true)
-    return false
+
+  changeActive: (model) ->
+    if model.get("active") == true
+      @$el.addClass("active")
+    else
+      @$el.removeClass("active")
+
 
 
   render: ->

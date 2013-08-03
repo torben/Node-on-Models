@@ -15,3 +15,10 @@ $ ->
 
   tt.runtime.router = new tt.routers.MainRouter
   Backbone.history.start pushState: true
+
+  $(document).on "click", "a", (e) ->
+    return true if $(e.currentTarget).attr("rel") != "backbone"
+
+    $.scrollTo(0)
+    tt.runtime.router.navigate($(e.currentTarget).attr("href"), true)
+    e.preventDefault()

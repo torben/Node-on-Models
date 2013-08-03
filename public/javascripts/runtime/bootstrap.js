@@ -17,7 +17,15 @@ $(function() {
     return checkScrollPosition();
   });
   tt.runtime.router = new tt.routers.MainRouter;
-  return Backbone.history.start({
+  Backbone.history.start({
     pushState: true
+  });
+  return $(document).on("click", "a", function(e) {
+    if ($(e.currentTarget).attr("rel") !== "backbone") {
+      return true;
+    }
+    $.scrollTo(0);
+    tt.runtime.router.navigate($(e.currentTarget).attr("href"), true);
+    return e.preventDefault();
   });
 });

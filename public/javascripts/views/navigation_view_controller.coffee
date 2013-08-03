@@ -26,6 +26,8 @@ class tt.viewControllers.NavigationViewController
     window.setTimeout =>
       view.render().$el.insertAfter $("#nav-begin-line")
       view.$el.addClass("bounceInLeft") if @collection.length > 1
+
+      @navigationView.setActive(view.model.get("navigation_id"))
     , timeout
 
     if @collection.length > 1
