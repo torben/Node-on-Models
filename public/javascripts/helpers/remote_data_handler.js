@@ -9,7 +9,6 @@ tt.helpers.RemoteDataHandler = (function() {
   }
 
   RemoteDataHandler.prototype.observe = function(channel, collection) {
-    console.log("hmmm: " + channel);
     this.socket.on(channel, function(data) {
       return collection.add(data);
     });

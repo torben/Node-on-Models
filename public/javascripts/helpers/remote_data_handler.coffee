@@ -8,7 +8,6 @@ class tt.helpers.RemoteDataHandler
 
 
   observe: (channel, collection) ->
-    console.log "hmmm: #{channel}"
     @socket.on channel, (data) -> collection.add(data)
 
     @socket.emit 'observe', {collection: channel}
