@@ -1,11 +1,13 @@
 .main-container {
   padding: 60px 0px 30px;
   min-height: 100%;
+  /*
   -moz-hyphens: auto;
   -o-hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+  */
 
   .content-wrapper {
     position: relative;
@@ -53,6 +55,17 @@
       h3 {
         margin-top: 0px;
         font-size: 17px;
+
+        a {
+          font-size: 17px;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
+      .techniques img {
+        float: left;
+        max-width: 35px;
       }
     }
 
@@ -78,6 +91,7 @@
           a {
             color: #fff;
             font-size: 17px;
+            font-weight: bold;
           }
         }
       }

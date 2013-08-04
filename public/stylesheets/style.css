@@ -716,11 +716,13 @@ a {
 .main-container {
   padding: 60px 0px 30px;
   min-height: 100%;
+  /*
   -moz-hyphens: auto;
   -o-hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
-  hyphens: auto; }
+  hyphens: auto;
+  */ }
   .main-container .content-wrapper {
     position: relative;
     width: 100%; }
@@ -753,6 +755,13 @@ a {
       .main-container .content-wrapper .subcontent-container h3 {
         margin-top: 0px;
         font-size: 17px; }
+        .main-container .content-wrapper .subcontent-container h3 a {
+          font-size: 17px;
+          font-weight: bold;
+          text-decoration: none; }
+      .main-container .content-wrapper .subcontent-container .techniques img {
+        float: left;
+        max-width: 35px; }
     .main-container .content-wrapper .highlight {
       height: 359px;
       background: url(/images/stoerer-bg.png);
@@ -770,7 +779,8 @@ a {
           color: white; }
           .main-container .content-wrapper .highlight .subcontent-container h3 a {
             color: white;
-            font-size: 17px; }
+            font-size: 17px;
+            font-weight: bold; }
     .main-container .content-wrapper .logo-list img {
       max-width: 150px;
       margin-left: 10px;
