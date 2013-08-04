@@ -16,13 +16,15 @@ html(lang="en")
     script(type='text/javascript', src='/javascripts/lib/backbone.js')
 
     script(type='text/javascript', src='/javascripts/helpers/namespace.js')
+    script(type='text/javascript', src='/javascripts/helpers/prototype.js')
     script(type='text/javascript', src='/javascripts/helpers/remote_data_handler.js')
   body
     nav.nav.shadow
       .container
         ul.left
           li
-            a(href="/articles/home", rel="backbone") TT
+            a(href="/articles/home", rel="backbone")
+              img(src="/images/tt-logo-small.png", title="TT")
 
         .navigations
         .clear
