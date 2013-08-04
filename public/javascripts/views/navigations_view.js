@@ -35,6 +35,9 @@ tt.views.NavigationsView = (function(_super) {
 
   NavigationsView.prototype.addOne = function(model) {
     var view;
+    if (model.get("active") === 0 || model.get("position") === 0 || (model.get("position") == null)) {
+      return;
+    }
     view = new tt.views.NavigationView({
       model: model,
       router: this.router

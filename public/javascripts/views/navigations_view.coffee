@@ -22,6 +22,8 @@ class tt.views.NavigationsView extends tt.views.MainView
 
 
   addOne: (model) ->
+    return if model.get("active") == 0 || model.get("position") == 0 || !model.get("position")?
+
     view = new tt.views.NavigationView(model: model, router: @router)
     @views.push(view) if @views.indexOf(view) == -1
 
