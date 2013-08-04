@@ -2,3 +2,5 @@
 .DS_Store
 db/database_development.sqlite
 db/database_test.sqlite
+
+node_modules/
