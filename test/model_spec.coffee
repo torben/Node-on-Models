@@ -143,6 +143,17 @@ describe 'Model', ->
         done()
 
 
+    it 'should load one record for given where', (done) ->
+      articles = Article.where title: 'title', (err, records) ->
+        should.not.exist(err)
+        articles.should.have.length(1)
+
+        articles[0].should.be.an.instanceOf(Article)
+        articles[0].id.should.equal 1
+
+        done()
+
+
 # TODO close db?
 
 

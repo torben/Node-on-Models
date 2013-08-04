@@ -125,6 +125,14 @@ describe 'DB', ->
               done()
 
 
+          it 'should load a record with where call', (done) ->
+            db.where title: 'mega', 'comments', (err, records) ->
+              should.not.exist(err)
+              records.should.have.length(1)
+
+              records[0].id.should.equal 1
+
+              done()
 
 
 

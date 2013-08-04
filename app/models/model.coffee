@@ -33,20 +33,40 @@ class Model
     @
 
 
+  @_parseRecords: (records, rows) ->
+    for record in rows
+      m = new @(record)
+      m.isNewRecord = false
+      m.changedAttributes = []
+      records.push m
+
+
   @all: (callback) ->
     records = []
     @db.loadAllFor @tableName(), (err, rows) =>
       return callback.call @, err if err?
 
-      for record in rows
-        m = new @(record)
-        m.isNewRecord = false
-        m.changedAttributes = []
-        records.push m
+      @_parseRecords(records, rows)
 
       callback.call @, null, records
 
     records
+
+
+  @where: (conditions={}, callback) ->
+    return unless callback?
+
+    records = []
+
+    @db.where conditions, @tableName(), (err, rows) =>
+      return callback.call @, err if err?
+
+      @_parseRecords(records, rows)
+
+      callback.call @, null, records
+
+    records
+
 
 
   @find: (id, callback) ->

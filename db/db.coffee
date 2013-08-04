@@ -89,6 +89,7 @@ class DB
 
 
   insertRow: (tableName, fields, values, callback) ->
+    return unless callback?
     sql = "INSERT INTO #{tableName} (#{fields.join(',')}) VALUES (#{'?' for i in [1..fields.length]})"
     that = @
     @db.run sql, values, (err) ->
@@ -99,6 +100,7 @@ class DB
 
 
   updateRow: (tableName, id, fields, values, callback) ->
+    return unless callback?
     sql = "UPDATE #{tableName} SET #{field+' = ?' for field in fields} WHERE id = ?"
     values.push(id)
     @db.run sql, values, (err) =>
@@ -108,13 +110,27 @@ class DB
 
 
   findById: (id, tableName, callback) ->
+    return unless callback?
     sql = "SELECT * FROM #{tableName} where id = ?"
     @db.get sql, [id], callback
 
 
   loadAllFor: (tableName, callback) ->
+    return unless callback?
     sql = "SELECT * FROM #{tableName} ORDER BY id"
     @db.all sql, callback
+
+  where: (condition = {}, tableName, callback) ->
+    return unless callback?
+    sql = "SELECT * FROM #{tableName} WHERE "
+    values = []
+
+    for key, value of condition
+      values.push value
+      sql += "#{key} = ?"
+
+    sql +=" ORDER BY id"
+    @db.all sql, values, callback
 
 
 db = null

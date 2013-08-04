@@ -137,6 +137,9 @@ DB = (function() {
 
   DB.prototype.insertRow = function(tableName, fields, values, callback) {
     var i, sql, that;
+    if (callback == null) {
+      return;
+    }
     sql = "INSERT INTO " + tableName + " (" + (fields.join(',')) + ") VALUES (" + ((function() {
       var _i, _ref, _results;
       _results = [];
@@ -160,6 +163,9 @@ DB = (function() {
   DB.prototype.updateRow = function(tableName, id, fields, values, callback) {
     var field, sql,
       _this = this;
+    if (callback == null) {
+      return;
+    }
     sql = "UPDATE " + tableName + " SET " + ((function() {
       var _i, _len, _results;
       _results = [];
@@ -180,14 +186,39 @@ DB = (function() {
 
   DB.prototype.findById = function(id, tableName, callback) {
     var sql;
+    if (callback == null) {
+      return;
+    }
     sql = "SELECT * FROM " + tableName + " where id = ?";
     return this.db.get(sql, [id], callback);
   };
 
   DB.prototype.loadAllFor = function(tableName, callback) {
     var sql;
+    if (callback == null) {
+      return;
+    }
     sql = "SELECT * FROM " + tableName + " ORDER BY id";
     return this.db.all(sql, callback);
+  };
+
+  DB.prototype.where = function(condition, tableName, callback) {
+    var key, sql, value, values;
+    if (condition == null) {
+      condition = {};
+    }
+    if (callback == null) {
+      return;
+    }
+    sql = "SELECT * FROM " + tableName + " WHERE ";
+    values = [];
+    for (key in condition) {
+      value = condition[key];
+      values.push(value);
+      sql += "" + key + " = ?";
+    }
+    sql += " ORDER BY id";
+    return this.db.all(sql, values, callback);
   };
 
   return DB;

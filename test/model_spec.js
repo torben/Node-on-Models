@@ -156,12 +156,24 @@ describe('Model', function() {
         return done();
       });
     });
-    return it('should find two records', function(done) {
+    it('should find two records', function(done) {
       var articles;
       return articles = Article.all(function(err, records) {
         should.not.exist(err);
         articles.should.have.length(2);
         articles[0].should.be.an.instanceOf(Article);
+        return done();
+      });
+    });
+    return it('should load one record for given where', function(done) {
+      var articles;
+      return articles = Article.where({
+        title: 'title'
+      }, function(err, records) {
+        should.not.exist(err);
+        articles.should.have.length(1);
+        articles[0].should.be.an.instanceOf(Article);
+        articles[0].id.should.equal(1);
         return done();
       });
     });

@@ -104,10 +104,20 @@ describe('DB', function() {
           });
         });
         return describe('loading test data', function() {
-          return it('should have two records in DB', function(done) {
+          it('should have two records in DB', function(done) {
             return db.loadAllFor('comments', function(err, row) {
               should.not.exist(err);
               row.length.should.equal(2);
+              return done();
+            });
+          });
+          return it('should load a record with where call', function(done) {
+            return db.where({
+              title: 'mega'
+            }, 'comments', function(err, records) {
+              should.not.exist(err);
+              records.should.have.length(1);
+              records[0].id.should.equal(1);
               return done();
             });
           });

@@ -58,22 +58,48 @@ Model = (function() {
     return this;
   };
 
+  Model._parseRecords = function(records, rows) {
+    var m, record, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = rows.length; _i < _len; _i++) {
+      record = rows[_i];
+      m = new this(record);
+      m.isNewRecord = false;
+      m.changedAttributes = [];
+      _results.push(records.push(m));
+    }
+    return _results;
+  };
+
   Model.all = function(callback) {
     var records,
       _this = this;
     records = [];
     this.db.loadAllFor(this.tableName(), function(err, rows) {
-      var m, record, _i, _len;
       if (err != null) {
         return callback.call(_this, err);
       }
-      for (_i = 0, _len = rows.length; _i < _len; _i++) {
-        record = rows[_i];
-        m = new _this(record);
-        m.isNewRecord = false;
-        m.changedAttributes = [];
-        records.push(m);
+      _this._parseRecords(records, rows);
+      return callback.call(_this, null, records);
+    });
+    return records;
+  };
+
+  Model.where = function(conditions, callback) {
+    var records,
+      _this = this;
+    if (conditions == null) {
+      conditions = {};
+    }
+    if (callback == null) {
+      return;
+    }
+    records = [];
+    this.db.where(conditions, this.tableName(), function(err, rows) {
+      if (err != null) {
+        return callback.call(_this, err);
       }
+      _this._parseRecords(records, rows);
       return callback.call(_this, null, records);
     });
     return records;
