@@ -21,11 +21,21 @@ $(function() {
     pushState: true
   });
   return $(document).on("click", "a", function(e) {
-    if ($(e.currentTarget).attr("rel") !== "backbone") {
-      return true;
+    var offset, rel;
+    rel = $(e.currentTarget).attr("rel");
+    if (rel == null) {
+      return;
     }
-    $.scrollTo(0);
-    tt.runtime.router.navigate($(e.currentTarget).attr("href"), true);
-    return e.preventDefault();
+    if (rel === "backbone") {
+      $.scrollTo(0);
+      tt.runtime.router.navigate($(e.currentTarget).attr("href"), true);
+      return e.preventDefault();
+    } else if (rel.startsWith('scrollto:')) {
+      offset = $(rel.split(":")[1]).offset();
+      if (offset != null) {
+        $.scrollTo(offset.top - $(".nav").height() - 10);
+        return e.preventDefault();
+      }
+    }
   });
 });

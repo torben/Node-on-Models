@@ -17,8 +17,15 @@ $ ->
   Backbone.history.start pushState: true
 
   $(document).on "click", "a", (e) ->
-    return true if $(e.currentTarget).attr("rel") != "backbone"
+    rel = $(e.currentTarget).attr("rel")
+    return unless rel?
 
-    $.scrollTo(0)
-    tt.runtime.router.navigate($(e.currentTarget).attr("href"), true)
-    e.preventDefault()
+    if rel == "backbone"
+      $.scrollTo(0)
+      tt.runtime.router.navigate($(e.currentTarget).attr("href"), true)
+      e.preventDefault()
+    else if rel.startsWith('scrollto:')
+      offset = $(rel.split(":")[1]).offset()
+      if offset?
+        $.scrollTo(offset.top - $(".nav").height() - 10)
+        e.preventDefault()
