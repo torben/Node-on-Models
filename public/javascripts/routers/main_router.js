@@ -14,7 +14,8 @@ tt.routers.MainRouter = (function(_super) {
   }
 
   MainRouter.prototype.routes = {
-    "articles/:id": "article",
+    "articles/:permalink": "article",
+    "articles/projects/:permalink": "article",
     "*page": "index"
   };
 

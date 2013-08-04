@@ -2,8 +2,9 @@ namespace "routers"
 
 class tt.routers.MainRouter extends Backbone.Router
   routes:
-    "articles/:id":  "article"
-    "*page":          "index" # catch all
+    "articles/:permalink":          "article"
+    "articles/projects/:permalink": "article"
+    "*page":                        "index" # catch all
 
 
   initialize: ->
