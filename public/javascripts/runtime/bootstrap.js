@@ -27,8 +27,9 @@ $(function() {
       return;
     }
     if (rel === "backbone") {
-      $.scrollTo(0);
-      tt.runtime.router.navigate($(e.currentTarget).attr("href"), true);
+      $.scrollTo(0, 100, function() {
+        return tt.runtime.router.navigate($(e.currentTarget).attr("href"), true);
+      });
       return e.preventDefault();
     } else if (rel.startsWith('scrollto:')) {
       offset = $(rel.split(":")[1]).offset();

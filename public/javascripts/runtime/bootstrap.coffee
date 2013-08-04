@@ -21,8 +21,7 @@ $ ->
     return unless rel?
 
     if rel == "backbone"
-      $.scrollTo(0)
-      tt.runtime.router.navigate($(e.currentTarget).attr("href"), true)
+      $.scrollTo 0, 100, -> tt.runtime.router.navigate($(e.currentTarget).attr("href"), true)
       e.preventDefault()
     else if rel.startsWith('scrollto:')
       offset = $(rel.split(":")[1]).offset()
