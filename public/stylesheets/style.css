@@ -783,8 +783,11 @@ a {
         height: 359px; }
         .main-container .content-wrapper .highlight .subcontent-container a {
           color: #bbbfc7; }
+        .main-container .content-wrapper .highlight .subcontent-container p {
+          margin: 0px 0px 30px 0px; }
         .main-container .content-wrapper .highlight .subcontent-container h3 {
-          color: white; }
+          color: white;
+          margin-bottom: 10px; }
           .main-container .content-wrapper .highlight .subcontent-container h3 a {
             color: white;
             font-size: 17px;
