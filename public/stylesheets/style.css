@@ -48,11 +48,15 @@ a {
         display: block;
         float: left;
         line-height: 20px;
-        margin: 15px 0px 15px 0px; }
+        margin: 15px 0px; }
     .nav .container ul.left {
       float: left; }
       .nav .container ul.left img {
         max-width: 30px; }
+      .nav .container ul.left li {
+        margin: 11px 0px; }
+      .nav .container ul.left li, .nav .container ul.left li a {
+        line-height: 30px; }
     .nav .container ul.right {
       float: right; }
       .nav .container ul.right li {

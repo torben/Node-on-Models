@@ -38,13 +38,17 @@
         display: block;
         float: left;
         line-height: 20px;
-        margin: 15px 0px 15px 0px;
+        margin: 15px 0px;
       }
     }
 
     ul.left {
       float: left;
       img { max-width: 30px; }
+      li {
+        margin: 11px 0px;
+      }
+      li, li a { line-height: 30px; }
     }
 
     ul.right {
