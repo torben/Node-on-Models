@@ -30,6 +30,10 @@ $innerPadding: 20px;
 @import "animate.scss";
 @import "article.scss";
 
+.left {
+  float: left;
+}
+
 .clear {
   clear: both;
   height: 0px;

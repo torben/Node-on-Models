@@ -51,6 +51,8 @@ a {
         margin: 15px 0px 15px 0px; }
     .nav .container ul.left {
       float: left; }
+      .nav .container ul.left img {
+        max-width: 30px; }
     .nav .container ul.right {
       float: right; }
       .nav .container ul.right li {
@@ -808,6 +810,9 @@ h2 {
   margin: 4px 0px 0px 0px;
   padding: 0px;
   vertical-align: baseline; }
+
+.left {
+  float: left; }
 
 .clear {
   clear: both;
