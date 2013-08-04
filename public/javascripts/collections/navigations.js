@@ -13,6 +13,10 @@ tt.collections.Navigations = (function(_super) {
     return _ref;
   }
 
+  Navigations.prototype.comparator = function(navigation) {
+    return navigation.get("position");
+  };
+
   return Navigations;
 
 })(tt.collections.MainCollection);
