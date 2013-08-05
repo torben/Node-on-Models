@@ -737,16 +737,12 @@ a {
       margin: 0px auto;
       width: 940px;
       padding: 0px 20px; }
-    .main-container .content-wrapper .margin-top {
-      margin-top: 30px; }
-    .main-container .content-wrapper .margin-top-high {
-      margin-top: 50px; }
     .main-container .content-wrapper .subcontent-container {
       float: left;
       width: 940px;
       text-shadow: white 0px 1px 0px;
       font-size: 14px;
-      line-height: 18px; }
+      line-height: 22px; }
       .main-container .content-wrapper .subcontent-container a {
         font-size: 14px; }
       .main-container .content-wrapper .subcontent-container img {
@@ -766,7 +762,7 @@ a {
       .main-container .content-wrapper .subcontent-container.big img {
         max-width: 110px;
         padding: 0px 30px;
-        border: 1px #e0e1e3 solid;
+        border: 1px #838383 solid;
         border-top: 0px;
         border-bottom: 0px;
         margin-right: 47px; }
@@ -778,12 +774,31 @@ a {
         width: 132px;
         margin-right: 30px;
         margin-top: -5px; }
+      .main-container .content-wrapper .subcontent-container.grid {
+        width: 430px;
+        padding-right: 0px;
+        padding-left: 40px; }
+        .main-container .content-wrapper .subcontent-container.grid.left-box {
+          padding-right: 40px;
+          padding-left: 0px; }
+        .main-container .content-wrapper .subcontent-container.grid img {
+          max-width: 80px;
+          display: block;
+          margin-bottom: 20px;
+          border: 1px #d0d8dc solid;
+          border-top: 0px;
+          border-bottom: 0px;
+          padding: 0px 20px; }
+        .main-container .content-wrapper .subcontent-container.grid h3 {
+          margin: 10px 0px -5px 0px; }
+        .main-container .content-wrapper .subcontent-container.grid .left {
+          width: 430px; }
       .main-container .content-wrapper .subcontent-container .techniques img {
         float: left;
         max-width: 35px;
         padding: 0px;
         border: 0;
-        margin: 20px 10px 0px 0px; }
+        margin: 10px 10px 10px 0px; }
     .main-container .content-wrapper .highlight {
       height: 359px;
       background: url(/images/stoerer-bg.png);
@@ -842,3 +857,9 @@ h2 {
   clear: both;
   height: 0px;
   width: 0px; }
+
+.margin-top {
+  margin-top: 40px; }
+
+.margin-top-high {
+  margin-top: 60px; }
