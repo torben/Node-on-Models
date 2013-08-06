@@ -26,6 +26,6 @@ class tt.routers.MainRouter extends Backbone.Router
 
   article: (permalink) ->
     @navigations.getModelBy 'permalink', permalink, (navigation) =>
-      @articles.getModel navigation.id, (model) =>
+      @articles.getModelBy 'navigation_id', navigation.id, (model) =>
         view = new tt.views.ArticleView(model: model)
         @navigationViewController.pushView(view)

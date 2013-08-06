@@ -41,7 +41,7 @@ tt.routers.MainRouter = (function(_super) {
   MainRouter.prototype.article = function(permalink) {
     var _this = this;
     return this.navigations.getModelBy('permalink', permalink, function(navigation) {
-      return _this.articles.getModel(navigation.id, function(model) {
+      return _this.articles.getModelBy('navigation_id', navigation.id, function(model) {
         var view;
         view = new tt.views.ArticleView({
           model: model
