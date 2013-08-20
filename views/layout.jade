@@ -18,7 +18,9 @@ html(lang="en")
     script(type='text/javascript', src='/javascripts/helpers/namespace.js')
     script(type='text/javascript', src='/javascripts/helpers/prototype.js')
     script(type='text/javascript', src='/javascripts/helpers/remote_data_handler.js')
+    script(type='text/javascript', src='/javascripts/helpers/scripts_loader.js')
   body
+    div#progress
     nav.nav
 
     .main-container
@@ -32,24 +34,22 @@ html(lang="en")
         | &copy;
 
 
-script(type='text/javascript', src='/javascripts/config.js')
-script(type='text/javascript', src='/javascripts/routers/main_router.js')
-
-script(type='text/javascript', src='/javascripts/collections/main_collection.js')
-script(type='text/javascript', src='/javascripts/collections/articles.js')
-script(type='text/javascript', src='/javascripts/collections/navigations.js')
-
-script(type='text/javascript', src='/javascripts/models/main_model.js')
-script(type='text/javascript', src='/javascripts/models/navigation.js')
-script(type='text/javascript', src='/javascripts/models/article.js')
-
-script(type='text/javascript', src='/javascripts/views/navigation_view_controller.js')
-
-script(type='text/javascript', src='/javascripts/views/main_view.js')
-script(type='text/javascript', src='/javascripts/views/navigations_view.js')
-script(type='text/javascript', src='/javascripts/views/navigation_view.js')
-script(type='text/javascript', src='/javascripts/views/article_view.js')
-
-script(type='text/javascript', src='/javascripts/runtime/bootstrap.js')
-
-script(type='text/javascript', src='/socket.io/socket.io.js')
+script(type="text/javascript").
+  console.log(tt.helpers.ScriptsLoader.loadScripts)
+  tt.helpers.ScriptsLoader.loadScripts([
+    '/javascripts/config.js',
+    '/javascripts/routers/main_router.js',
+    '/javascripts/collections/main_collection.js',
+    '/javascripts/collections/articles.js',
+    '/javascripts/collections/navigations.js',
+    '/javascripts/models/main_model.js',
+    '/javascripts/models/navigation.js',
+    '/javascripts/models/article.js',
+    '/javascripts/views/navigation_view_controller.js',
+    '/javascripts/views/main_view.js',
+    '/javascripts/views/navigations_view.js',
+    '/javascripts/views/navigation_view.js',
+    '/javascripts/views/article_view.js',
+    '/javascripts/runtime/bootstrap.js',
+    '/socket.io/socket.io.js'
+  ]);
