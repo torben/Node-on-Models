@@ -4,7 +4,7 @@ class tt.helpers.RemoteDataHandler
   socket: null
 
   constructor: ->
-    @socket = io.connect('http://localhost')
+    @socket = io.connect tt.config.socketUrl
 
 
   observe: (channel, collection) ->

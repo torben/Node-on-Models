@@ -4,12 +4,20 @@ block body
   
 block templates
   script(type='text/template', id='article_template').
-    <div class="content">
-      <h1><%= title %></h1>
-    </div>
-
     <%= body %>
 
 
   script(type='text/template', id='navigation_template').
+    <a href="/articles/home" rel="backbone" class="logo">
+      <img src="/images/tt-logo-small.png" title="TT">
+    </a>
+    <ul class="right">
+    </ul>
+    <div class="clear"></div>
+    <div class="title-field">
+      <h2></h2>
+      <p></p>
+    </div>
+
+  script(type='text/template', id='navigation_item_template').
     <a href="/articles/<%= permalink %>" rel="backbone"><%= title %></a>

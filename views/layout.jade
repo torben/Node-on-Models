@@ -19,23 +19,20 @@ html(lang="en")
     script(type='text/javascript', src='/javascripts/helpers/prototype.js')
     script(type='text/javascript', src='/javascripts/helpers/remote_data_handler.js')
   body
-    nav.nav.shadow
-      .container
-        ul.left
-          li
-            a(href="/articles/home", rel="backbone")
-              img(src="/images/tt-logo-small.png", title="TT")
-
-        .navigations
-        .clear
+    nav.nav
 
     .main-container
-      #nav-begin-line
       block body
     footer.footer
-      a(href='http://twitter.com/torben_tt') &copy; 2013 Torben Toepper
+      a(href='http://twitter.com/torben_tt')
+        | Torben Toepper
+        br
+        | 2013
+        br
+        | &copy;
 
 
+script(type='text/javascript', src='/javascripts/config.js')
 script(type='text/javascript', src='/javascripts/routers/main_router.js')
 
 script(type='text/javascript', src='/javascripts/collections/main_collection.js')

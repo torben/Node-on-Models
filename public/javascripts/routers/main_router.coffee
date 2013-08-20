@@ -13,7 +13,7 @@ class tt.routers.MainRouter extends Backbone.Router
     @navigations = new tt.collections.Navigations()
 
     @navigationViewController = new tt.viewControllers.NavigationViewController(navigations: @navigations, router: @)
-    $(".navigations").html(@navigationViewController.navigationView.render().el)
+    $(".nav").html(@navigationViewController.navigationView.render().el)
 
     remoteDataHandler = new tt.helpers.RemoteDataHandler()
     remoteDataHandler.observe "articles", @articles
@@ -27,5 +27,8 @@ class tt.routers.MainRouter extends Backbone.Router
   article: (permalink) ->
     @navigations.getModelBy 'permalink', permalink, (navigation) =>
       @articles.getModelBy 'navigation_id', navigation.id, (model) =>
+        document.title = model.get "title"
+
         view = new tt.views.ArticleView(model: model)
-        @navigationViewController.pushView(view)
+        @navigationViewController.setCurrentNavigation navigation
+        @navigationViewController.setView view

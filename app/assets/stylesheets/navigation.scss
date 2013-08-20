@@ -3,9 +3,7 @@
   top: 0px;
   left:0px;
   width: 100%;
-  height: 50px;
   
-  background-image: -webkit-linear-gradient(top,#ffffff 0,rgba(255,255,255,0.85) 100%);
   border: none;
   z-index: 99999;
 
@@ -19,21 +17,24 @@
     }
   }
 
+  .logo {
+    margin-left: 430px;
+    display: block;
+    float: left;
+  }
+
   li.active a {
     //text-decoration: underline;
     font-weight: bold;
   }
 
-  &.shadow {
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-  }
-
   .container {
-    width: $innerWidth;
-    padding: 0px $innerPadding;
+    background: url(/images/layout/navigation_bg.png) center bottom no-repeat;
     margin: 0px auto;
+    width: $width + 5;
+
+    padding: 33px 0px 38px 0px;
+    height: 47px;
 
     ul {
       padding: 0px;
@@ -44,60 +45,56 @@
         display: block;
         float: left;
         line-height: 20px;
-        margin: 15px 0px;
+        margin: 15px 0px 12px 0px;
       }
-    }
-
-    ul.left {
-      float: left;
-      img { max-width: 30px; }
-      li {
-        margin: 11px 0px;
-      }
-      li, li a { line-height: 30px; }
     }
 
     ul.right {
+      margin-right: $innerPadding;
       float: right;
 
       li {
-        border-left: 1px #c0c0c0 solid;
-        padding: 0px 30px 0px 29px;
+        border-right: 1px #96e4d0 solid;
+        border-left: 1px #82d6c1 solid;
+        padding: 0px 10px 0px 9px;
+        height: 20px;
       }
 
       li.first {
-        border: none;
-        padding-left: 30px;
+        border-left: none;
+      }
+
+      li:last-of-type {
+        padding-right: 0px;
+        border-right: none;
+      }
+
+      a {
+        font-weight: bold;
+        font-size: 14px;
+        color: #96e4d0;
+        line-height: 20px;
       }
     }
   }
 }
 
-#nav-begin-line {
-  margin-top: -10px;
-  background: url(/images/nav_border_bg.png) 50% 0% no-repeat;
-  position: absolute;
-  width: 100%;
-  height: 80px;
-}
-
 .footer {
-  background: url(/images/nav_border_bg.png) no-repeat;
-  width: $innerWidth;
-  margin: 30px auto;
-  padding: 20px $innerPadding;
-  height: 40px;
+  background: #fff;
+  margin: 0px auto;
+  width: 132px;
+  height: 100px;
+  background: url(/images/layout/footer_bg.png) no-repeat;
+  text-align: center;
 
-  color: #c0c0c0;
-  font-size: 11px;
-
-  a {
-    color: #c0c0c0;
-    font-size: 11px;
+  &, a {
+    color: #fff;
+    font-size: 12px;
+    line-height: 16px;
     text-decoration: none;
+  }
 
-    &:hover {
-      text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
   }
 }

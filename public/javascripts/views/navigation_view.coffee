@@ -1,7 +1,7 @@
 namespace 'views'
 
 class tt.views.NavigationView extends tt.views.MainView
-  template: _.template($('#navigation_template').html())
+  template: _.template($('#navigation_item_template').html())
   tagName: 'li'
   model: tt.models.Navigation
 
@@ -19,7 +19,6 @@ class tt.views.NavigationView extends tt.views.MainView
       @$el.addClass("active")
     else
       @$el.removeClass("active")
-
 
 
   render: ->

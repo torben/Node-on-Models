@@ -13,20 +13,35 @@ tt.views.NavigationsView = (function(_super) {
     return _ref;
   }
 
-  NavigationsView.prototype.tagName = 'ul';
+  NavigationsView.prototype.lastClassName = null;
 
-  NavigationsView.prototype.className = 'right';
+  NavigationsView.prototype.tagName = 'div';
+
+  NavigationsView.prototype.className = 'container';
 
   NavigationsView.prototype.collection = tt.collections.Navigations;
 
+  NavigationsView.prototype.template = _.template($('#navigation_template').html());
+
   NavigationsView.prototype.views = [];
+
+  NavigationsView.prototype.model = null;
 
   NavigationsView.prototype.initialize = function(options) {
     NavigationsView.__super__.initialize.call(this, options);
     _.bindAll(this, 'addAll', 'addOne');
     this.router = options.router;
     this.collection.on('reset', this.addAll);
-    return this.collection.on('add', this.addOne);
+    this.collection.on('add', this.addOne);
+    return this.model = new tt.models.MainModel;
+  };
+
+  NavigationsView.prototype.setCurrentClass = function(className) {
+    if (this.lastClassName != null) {
+      this.$el.removeClass(this.lastClassName);
+    }
+    this.lastClassName = className;
+    return this.$el.addClass(className);
   };
 
   NavigationsView.prototype.addAll = function() {
@@ -45,8 +60,8 @@ tt.views.NavigationsView = (function(_super) {
     if (this.views.indexOf(view) === -1) {
       this.views.push(view);
     }
-    this.$el.append(view.render().el);
-    if (this.$el.find("li").length === 1) {
+    this.$(".right").append(view.render().el);
+    if (this.$el.find("ul.right li").length === 1) {
       return view.$el.addClass("first");
     }
   };
@@ -63,7 +78,7 @@ tt.views.NavigationsView = (function(_super) {
   };
 
   NavigationsView.prototype.render = function() {
-    this.$el.html("");
+    this.$el.html(this.template());
     return this;
   };
 

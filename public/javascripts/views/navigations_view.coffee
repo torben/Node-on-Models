@@ -1,10 +1,13 @@
 namespace 'views'
 
 class tt.views.NavigationsView extends tt.views.MainView
-  tagName: 'ul'
-  className: 'right'
+  lastClassName: null
+  tagName: 'div'
+  className: 'container'
   collection: tt.collections.Navigations
+  template: _.template($('#navigation_template').html())
   views: []
+  model: null
 
   initialize: (options) ->
     super options
@@ -15,6 +18,15 @@ class tt.views.NavigationsView extends tt.views.MainView
 
     @collection.on 'reset', @addAll
     @collection.on 'add', @addOne
+
+    @model = new tt.models.MainModel
+
+
+  setCurrentClass: (className) ->
+    @$el.removeClass @lastClassName if @lastClassName?
+    @lastClassName = className
+    
+    @$el.addClass className
 
 
   addAll: ->
@@ -27,8 +39,8 @@ class tt.views.NavigationsView extends tt.views.MainView
     view = new tt.views.NavigationView(model: model, router: @router)
     @views.push(view) if @views.indexOf(view) == -1
 
-    @$el.append(view.render().el)
-    if @$el.find("li").length == 1
+    @$(".right").append(view.render().el)
+    if @$el.find("ul.right li").length == 1
       view.$el.addClass "first"
 
 
@@ -38,6 +50,6 @@ class tt.views.NavigationsView extends tt.views.MainView
 
 
   render: ->
-    @$el.html("")
+    @$el.html(@template())
 
     @

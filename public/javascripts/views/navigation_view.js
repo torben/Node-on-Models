@@ -13,7 +13,7 @@ tt.views.NavigationView = (function(_super) {
     return _ref;
   }
 
-  NavigationView.prototype.template = _.template($('#navigation_template').html());
+  NavigationView.prototype.template = _.template($('#navigation_item_template').html());
 
   NavigationView.prototype.tagName = 'li';
 

@@ -5,7 +5,7 @@ tt.helpers.RemoteDataHandler = (function() {
   RemoteDataHandler.prototype.socket = null;
 
   function RemoteDataHandler() {
-    this.socket = io.connect('http://localhost');
+    this.socket = io.connect(tt.config.socketUrl);
   }
 
   RemoteDataHandler.prototype.observe = function(channel, collection) {

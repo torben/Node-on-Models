@@ -28,7 +28,7 @@ tt.routers.MainRouter = (function(_super) {
       navigations: this.navigations,
       router: this
     });
-    $(".navigations").html(this.navigationViewController.navigationView.render().el);
+    $(".nav").html(this.navigationViewController.navigationView.render().el);
     remoteDataHandler = new tt.helpers.RemoteDataHandler();
     remoteDataHandler.observe("articles", this.articles);
     return remoteDataHandler.observe("navigations", this.navigations);
@@ -43,10 +43,12 @@ tt.routers.MainRouter = (function(_super) {
     return this.navigations.getModelBy('permalink', permalink, function(navigation) {
       return _this.articles.getModelBy('navigation_id', navigation.id, function(model) {
         var view;
+        document.title = model.get("title");
         view = new tt.views.ArticleView({
           model: model
         });
-        return _this.navigationViewController.pushView(view);
+        _this.navigationViewController.setCurrentNavigation(navigation);
+        return _this.navigationViewController.setView(view);
       });
     });
   };
