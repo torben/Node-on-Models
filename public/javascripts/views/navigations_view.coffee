@@ -9,6 +9,11 @@ class tt.views.NavigationsView extends tt.views.MainView
   views: []
   model: null
 
+  events:
+    'click .nav-toggle': 'toggleNavigation'
+    'click .links a': 'closeNavigation'
+
+
   initialize: (options) ->
     super options
 
@@ -20,6 +25,19 @@ class tt.views.NavigationsView extends tt.views.MainView
     @collection.on 'add', @addOne
 
     @model = new tt.models.MainModel
+
+
+  closeNavigation: (e) ->
+    if @$('.links').hasClass 'fadeIn'
+      @$('.links').removeClass('fadeIn').addClass('fadeOut')
+
+
+  toggleNavigation: (e) ->
+    @$('.links').show()
+    if @$('.links').hasClass 'fadeIn'
+      @closeNavigation(e)
+    else
+      @$('.links').removeClass('fadeOut').addClass('fadeIn')
 
 
   setCurrentClass: (className) ->
@@ -39,8 +57,8 @@ class tt.views.NavigationsView extends tt.views.MainView
     view = new tt.views.NavigationView(model: model, router: @router)
     @views.push(view) if @views.indexOf(view) == -1
 
-    @$(".right").append(view.render().el)
-    if @$el.find("ul.right li").length == 1
+    @$(".links").append(view.render().el)
+    if @$el.find("ul.links li").length == 1
       view.$el.addClass "first"
 
 

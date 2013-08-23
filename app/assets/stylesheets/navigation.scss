@@ -1,6 +1,6 @@
 .nav {
   position: fixed;
-  top: 0px;
+  top: -20px;
   left:0px;
   width: 100%;
   
@@ -15,6 +15,10 @@
       //text-decoration: underline;
       //font-weight: bold;
     }
+  }
+
+  .nav-toggle {
+    display: none;
   }
 
   .logo {
@@ -96,5 +100,68 @@
 
   a:hover {
     text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 898px) {
+  .nav {
+    .logo {
+      margin-left: 27px;
+    }
+
+    .container {
+      background-position: -403px 0px;
+      background-repeat: repeat;
+      width: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .nav {
+    position: absolute;
+    height: 23px;
+
+    .logo {
+      margin-left: 10px;
+    }
+
+    .container {
+      height: 23px;
+      background: #329f83;
+      width: 100%;
+
+      .nav-toggle {
+        display: block;
+        float: right;
+        width: 44px;
+        height: 44px;
+        margin-right: 10px;
+        background: url(/images/layout/nav_button.png) no-repeat;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+      }
+
+      ul.right {
+        position: fixed;
+        top: 74px;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: #329f83;
+        clear: both;
+        margin-right: 10px;
+
+        li {
+          list-style: none;
+          float: none;
+        }
+      }
+
+      ul.right.open {
+        display: block;
+      }
+    }
   }
 }

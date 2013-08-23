@@ -19,6 +19,8 @@ html(lang="en")
     script(type='text/javascript', src='/javascripts/helpers/prototype.js')
     script(type='text/javascript', src='/javascripts/helpers/remote_data_handler.js')
     script(type='text/javascript', src='/javascripts/helpers/scripts_loader.js')
+
+    meta(name='viewport', content='width=device-width; initial-scale=1.0; maximum-scale=1.0;')
   body
     div#progress
     nav.nav
@@ -35,7 +37,6 @@ html(lang="en")
 
 
 script(type="text/javascript").
-  console.log(tt.helpers.ScriptsLoader.loadScripts)
   tt.helpers.ScriptsLoader.loadScripts([
     '/javascripts/config.js',
     '/javascripts/routers/main_router.js',

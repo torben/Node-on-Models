@@ -27,6 +27,11 @@ tt.views.NavigationsView = (function(_super) {
 
   NavigationsView.prototype.model = null;
 
+  NavigationsView.prototype.events = {
+    'click .nav-toggle': 'toggleNavigation',
+    'click .links a': 'closeNavigation'
+  };
+
   NavigationsView.prototype.initialize = function(options) {
     NavigationsView.__super__.initialize.call(this, options);
     _.bindAll(this, 'addAll', 'addOne');
@@ -34,6 +39,21 @@ tt.views.NavigationsView = (function(_super) {
     this.collection.on('reset', this.addAll);
     this.collection.on('add', this.addOne);
     return this.model = new tt.models.MainModel;
+  };
+
+  NavigationsView.prototype.closeNavigation = function(e) {
+    if (this.$('.links').hasClass('fadeIn')) {
+      return this.$('.links').removeClass('fadeIn').addClass('fadeOut');
+    }
+  };
+
+  NavigationsView.prototype.toggleNavigation = function(e) {
+    this.$('.links').show();
+    if (this.$('.links').hasClass('fadeIn')) {
+      return this.closeNavigation(e);
+    } else {
+      return this.$('.links').removeClass('fadeOut').addClass('fadeIn');
+    }
   };
 
   NavigationsView.prototype.setCurrentClass = function(className) {
@@ -60,8 +80,8 @@ tt.views.NavigationsView = (function(_super) {
     if (this.views.indexOf(view) === -1) {
       this.views.push(view);
     }
-    this.$(".right").append(view.render().el);
-    if (this.$el.find("ul.right li").length === 1) {
+    this.$(".links").append(view.render().el);
+    if (this.$el.find("ul.links li").length === 1) {
       return view.$el.addClass("first");
     }
   };
