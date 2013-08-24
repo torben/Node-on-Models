@@ -15,7 +15,7 @@ tt.helpers.ScriptsLoader = (function() {
         document.write('<script src="' + script + '"><\/script>');
         percent = i / maxPercent * 100 + 5;
         if (withLoadingBar) {
-          document.write('<script>percent = ' + percent + ';$("#progress").width(percent+"%")</script>');
+          document.write('<script>percent = ' + percent + ';$("#progress").width(percent+"%");</script>');
         }
         i++;
       }

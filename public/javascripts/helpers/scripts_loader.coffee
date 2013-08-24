@@ -8,7 +8,7 @@ tt.helpers.ScriptsLoader = do ->
       document.write('<script src="'+script+'"><\/script>')
       percent = i / maxPercent * 100 + 5
 
-      document.write '<script>percent = '+percent+';$("#progress").width(percent+"%")</script>' if withLoadingBar
+      document.write '<script>percent = '+percent+';$("#progress").width(percent+"%");</script>' if withLoadingBar
       i++
 
     document.write '<script>$("#progress").addClass("animated fadeOut")</script>' if withLoadingBar

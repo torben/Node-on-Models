@@ -939,20 +939,16 @@ h3 {
       -moz-border-radius: 50px;
       border-radius: 50px; }
     .main-container .content-wrapper .logo-list img {
-      max-width: 140px;
+      max-width: 80px;
       margin-left: 10px;
-      margin-bottom: 30px; }
+      margin-bottom: 30px;
+      display: inline; }
     .main-container .content-wrapper .techniques img {
       float: left;
       max-width: 35px;
       padding: 0px;
       border: 0;
       margin: 10px 10px 10px 0px; }
-    .main-container .content-wrapper .logo-list img {
-      max-width: 140px;
-      margin-left: 10px;
-      margin-bottom: 30px;
-      display: inline; }
     .main-container .content-wrapper .without-image {
       padding-top: 140px; }
 
@@ -1065,7 +1061,7 @@ h3 {
   left: -6px;
   width: 1%;
   height: 2px;
-  background: #0088cc;
+  background: #687272;
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
   border-radius: 1px;
@@ -1078,10 +1074,10 @@ h3 {
     position: absolute;
     top: 0;
     height: 2px;
-    -moz-box-shadow: #0088cc 1px 0 6px 1px;
-    -ms-box-shadow: #0088cc 1px 0 6px 1px;
-    -webkit-box-shadow: #0088cc 1px 0 6px 1px;
-    box-shadow: #0088cc 1px 0 6px 1px;
+    -moz-box-shadow: #687272 1px 0 6px 1px;
+    -ms-box-shadow: #687272 1px 0 6px 1px;
+    -webkit-box-shadow: #687272 1px 0 6px 1px;
+    box-shadow: #687272 1px 0 6px 1px;
     -moz-border-radius: 100%;
     -webkit-border-radius: 100%;
     border-radius: 100%; }
