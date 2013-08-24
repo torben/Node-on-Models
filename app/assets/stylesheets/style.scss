@@ -100,6 +100,10 @@ $innerPadding: 30px;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpimDh39UyAAAMABg8CcynVaVoAAAAASUVORK5CYII=');
 }
 
+.no-overflow {
+  overflow: hidden;
+}
+
 @media only screen and (min-width: 898px) {
   body {
     -moz-transition: background-image 1s, -moz-transform 1s;
