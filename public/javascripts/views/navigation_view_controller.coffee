@@ -58,8 +58,6 @@ class tt.viewControllers.NavigationViewController
     window.setTimeout =>
       $(".main-container").prepend view.render().$el
       view.$el.addClass("bounceInLeft") if @collection.length > 1
-
-      @navigationView.setActive(view.model.get("navigation_id"))
     , timeout
 
     if @collection.length > 1

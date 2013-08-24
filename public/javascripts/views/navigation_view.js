@@ -27,17 +27,17 @@ tt.views.NavigationView = (function(_super) {
     if (options) {
       this.router = options.router;
     }
-    _.bindAll(this, 'changeActive');
+    _.bindAll(this, 'changeCurrent');
     if (options.model != null) {
-      return this.model.on('change:active', this.changeActive);
+      return this.model.on('change:current', this.changeCurrent);
     }
   };
 
-  NavigationView.prototype.changeActive = function(model) {
-    if (model.get("active") === true) {
-      return this.$el.addClass("active");
+  NavigationView.prototype.changeCurrent = function(model) {
+    if (model.get("current") === true) {
+      return this.$el.addClass("current");
     } else {
-      return this.$el.removeClass("active");
+      return this.$el.removeClass("current");
     }
   };
 

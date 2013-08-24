@@ -8,6 +8,7 @@ class tt.views.NavigationsView extends tt.views.MainView
   template: _.template($('#navigation_template').html())
   views: []
   model: null
+  currentPermalink: null
 
   events:
     'click .nav-toggle': 'toggleNavigation'
@@ -25,6 +26,22 @@ class tt.views.NavigationsView extends tt.views.MainView
     @collection.on 'add', @addOne
 
     @model = new tt.models.MainModel
+
+    Backbone.history.on "route", (router, path, parameters) =>
+      permalink = parameters[0]
+      if permalink?
+        @currentPermalink = permalink
+        @setCurrentActive()
+
+
+  setCurrentActive: ->
+    models = @collection.where permalink: @currentPermalink
+
+    for model in @collection.where(current: true)
+      model.set current: false
+
+    if models.length > 0
+      models[0].set current: true
 
 
   closeNavigation: (e) ->
@@ -68,10 +85,7 @@ class tt.views.NavigationsView extends tt.views.MainView
     if @$el.find("ul.links li").length == 1
       view.$el.addClass "first"
 
-
-  setActive: (id) ->
-    for view in @views
-      view.model.set("active", view.model.get("id") == id)
+    @setCurrentActive()
 
 
   render: ->

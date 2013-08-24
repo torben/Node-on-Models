@@ -27,11 +27,6 @@
     float: left;
   }
 
-  li.active a {
-    //text-decoration: underline;
-    font-weight: bold;
-  }
-
   .container {
     background: url(/images/layout/navigation_bg.png) center bottom no-repeat;
     margin: 0px auto;
@@ -78,6 +73,11 @@
         font-size: 14px;
         color: #96e4d0;
         line-height: 20px;
+      }
+
+      li.current a {
+        //text-decoration: underline;
+        color: #fff;
       }
     }
   }

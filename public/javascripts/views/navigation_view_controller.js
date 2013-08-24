@@ -69,9 +69,8 @@ tt.viewControllers.NavigationViewController = (function() {
     window.setTimeout(function() {
       $(".main-container").prepend(view.render().$el);
       if (_this.collection.length > 1) {
-        view.$el.addClass("bounceInLeft");
+        return view.$el.addClass("bounceInLeft");
       }
-      return _this.navigationView.setActive(view.model.get("navigation_id"));
     }, timeout);
     if (this.collection.length > 1) {
       _results = [];

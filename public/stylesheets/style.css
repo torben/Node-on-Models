@@ -41,8 +41,6 @@ a {
     margin-left: 430px;
     display: block;
     float: left; }
-  .nav li.active a {
-    font-weight: bold; }
   .nav .container {
     background: url(/images/layout/navigation_bg.png) center bottom no-repeat;
     margin: 0px auto;
@@ -76,6 +74,8 @@ a {
         font-size: 14px;
         color: #96e4d0;
         line-height: 20px; }
+      .nav .container ul.right li.current a {
+        color: white; }
 
 .footer {
   margin: 0px auto;
@@ -861,6 +861,9 @@ h2 {
   margin: 4px 0px 0px 0px;
   padding: 0px;
   vertical-align: baseline; }
+
+h3 {
+  margin-top: 0px; }
 
 .main-container {
   padding: 0px;

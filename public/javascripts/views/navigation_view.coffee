@@ -10,15 +10,15 @@ class tt.views.NavigationView extends tt.views.MainView
 
     @router = options.router if options
 
-    _.bindAll @, 'changeActive'
-    @model.on 'change:active', @changeActive if options.model?
+    _.bindAll @, 'changeCurrent'
+    @model.on 'change:current', @changeCurrent if options.model?
 
 
-  changeActive: (model) ->
-    if model.get("active") == true
-      @$el.addClass("active")
+  changeCurrent: (model) ->
+    if model.get("current") == true
+      @$el.addClass("current")
     else
-      @$el.removeClass("active")
+      @$el.removeClass("current")
 
 
   render: ->

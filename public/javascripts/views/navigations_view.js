@@ -27,18 +27,50 @@ tt.views.NavigationsView = (function(_super) {
 
   NavigationsView.prototype.model = null;
 
+  NavigationsView.prototype.currentPermalink = null;
+
   NavigationsView.prototype.events = {
     'click .nav-toggle': 'toggleNavigation',
     'click .links a': 'closeNavigation'
   };
 
   NavigationsView.prototype.initialize = function(options) {
+    var _this = this;
     NavigationsView.__super__.initialize.call(this, options);
     _.bindAll(this, 'addAll', 'addOne');
     this.router = options.router;
     this.collection.on('reset', this.addAll);
     this.collection.on('add', this.addOne);
-    return this.model = new tt.models.MainModel;
+    this.model = new tt.models.MainModel;
+    return Backbone.history.on("route", function(router, path, parameters) {
+      var permalink;
+      permalink = parameters[0];
+      if (permalink != null) {
+        _this.currentPermalink = permalink;
+        return _this.setCurrentActive();
+      }
+    });
+  };
+
+  NavigationsView.prototype.setCurrentActive = function() {
+    var model, models, _i, _len, _ref1;
+    models = this.collection.where({
+      permalink: this.currentPermalink
+    });
+    _ref1 = this.collection.where({
+      current: true
+    });
+    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      model = _ref1[_i];
+      model.set({
+        current: false
+      });
+    }
+    if (models.length > 0) {
+      return models[0].set({
+        current: true
+      });
+    }
   };
 
   NavigationsView.prototype.closeNavigation = function(e) {
@@ -90,19 +122,9 @@ tt.views.NavigationsView = (function(_super) {
     }
     this.$(".links").append(view.render().el);
     if (this.$el.find("ul.links li").length === 1) {
-      return view.$el.addClass("first");
+      view.$el.addClass("first");
     }
-  };
-
-  NavigationsView.prototype.setActive = function(id) {
-    var view, _i, _len, _ref1, _results;
-    _ref1 = this.views;
-    _results = [];
-    for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-      view = _ref1[_i];
-      _results.push(view.model.set("active", view.model.get("id") === id));
-    }
-    return _results;
+    return this.setCurrentActive();
   };
 
   NavigationsView.prototype.render = function() {
