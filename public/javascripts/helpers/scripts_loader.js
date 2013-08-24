@@ -8,6 +8,9 @@ tt.helpers.ScriptsLoader = (function() {
       if (withLoadingBar == null) {
         withLoadingBar = false;
       }
+      if (!withLoadingBar) {
+        $("#progress").hide();
+      }
       maxPercent = scripts.length;
       i = 1;
       for (_i = 0, _len = scripts.length; _i < _len; _i++) {

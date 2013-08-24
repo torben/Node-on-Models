@@ -2,6 +2,7 @@ namespace "helpers"
 
 tt.helpers.ScriptsLoader = do ->
   loadScripts: (scripts, withLoadingBar = false) ->
+    $("#progress").hide() unless withLoadingBar
     maxPercent = scripts.length
     i = 1
     for script in scripts
