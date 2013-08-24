@@ -14,11 +14,7 @@ body {
   background-position: 50% 50%;
   background-image: url(/images/layout/background.jpg);
   background-size: cover;
-  background-attachment: fixed;
-  -moz-transition: background-image 1s, -moz-transform 1s;
-  -webkit-transition: background-image 1s, -webkit-transform 1s;
-  -o-transition: background-image 1s, -o-transform 1s;
-  transition: background-image 1s, transform 1s; }
+  background-attachment: fixed; }
   body.about {
     background-image: url(/images/layout/background_about.jpg); }
 
@@ -82,12 +78,16 @@ a {
         line-height: 20px; }
 
 .footer {
-  background: white;
   margin: 0px auto;
   width: 132px;
-  height: 100px;
-  background: url(/images/layout/footer_bg.png) no-repeat;
-  text-align: center; }
+  height: 60px;
+  text-align: center;
+  -webkit-border-bottom-right-radius: 60px;
+  -webkit-border-bottom-left-radius: 60px;
+  -moz-border-radius-bottomright: 60px;
+  -moz-border-radius-bottomleft: 60px;
+  border-bottom-right-radius: 60px;
+  border-bottom-left-radius: 60px; }
   .footer, .footer a {
     color: white;
     font-size: 12px;
@@ -106,13 +106,8 @@ a {
 
 @media only screen and (max-width: 640px) {
   .nav {
-    position: absolute;
-    height: 23px; }
-    .nav .logo {
-      margin-left: 10px; }
+    position: absolute; }
     .nav .container {
-      height: 23px;
-      background: #329f83;
       width: 100%; }
       .nav .container .nav-toggle {
         display: block;
@@ -957,6 +952,7 @@ h2 {
   background-position: 50% 0%; }
 
 .home-teaser {
+  top: 0px;
   padding: 182px 0px 0px 516px;
   width: 365px;
   position: absolute; }
@@ -993,7 +989,8 @@ h2 {
     margin-top: 92px;
     width: 100%;
     padding: 50px 0px 0px 0px;
-    text-align: right; }
+    text-align: right;
+    top: 0px; }
     .main-container .content-wrapper .home-teaser h1 {
       padding-right: 20px;
       width: 300px;
@@ -1008,29 +1005,36 @@ h2 {
   .main-container {
     padding-top: 72px; }
     .main-container .content-wrapper .home-teaser {
+      position: static;
+      background: white;
       width: auto;
-      padding: 10px 10px 0px 10px;
-      text-align: right;
+      padding: 10px 10px 0px 20px;
+      text-align: left;
       margin-top: 0px; }
       .main-container .content-wrapper .home-teaser h1 {
         width: auto;
-        float: none; }
+        float: none;
+        color: #687272; }
       .main-container .content-wrapper .home-teaser h4 {
         float: none;
         clear: none;
-        width: auto; }
+        width: auto;
+        color: #687272;
+        margin: 0px; }
     .main-container .content-wrapper .col2 .row, .main-container .content-wrapper .col3 .row, .main-container .content-wrapper .col4 .row {
       float: none;
       width: auto; }
     .main-container .content-wrapper .block-blackfont.home {
       width: auto; }
       .main-container .content-wrapper .block-blackfont.home .center {
-        padding: 10px;
+        padding: 20px;
         text-align: left; }
-    .main-container .content-wrapper .block-whitefont .row .left, .main-container .content-wrapper .block-blackfont .row .left {
-      padding-right: 0px; }
-    .main-container .content-wrapper .block-whitefont .row .right, .main-container .content-wrapper .block-blackfont .row .right {
-      padding-left: 0px; }
+    .main-container .content-wrapper .block-whitefont, .main-container .content-wrapper .block-blackfont {
+      padding: 30px 20px; }
+      .main-container .content-wrapper .block-whitefont .row .left, .main-container .content-wrapper .block-blackfont .row .left {
+        padding-right: 0px; }
+      .main-container .content-wrapper .block-whitefont .row .right, .main-container .content-wrapper .block-blackfont .row .right {
+        padding-left: 0px; }
     .main-container .content-wrapper .split-border {
       background-image: none; }
     .main-container .content-wrapper .split {
@@ -1126,3 +1130,10 @@ h2 {
 
 .gray {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpimDh39UyAAAMABg8CcynVaVoAAAAASUVORK5CYII='); }
+
+@media only screen and (min-width: 898px) {
+  body {
+    -moz-transition: background-image 1s, -moz-transform 1s;
+    -webkit-transition: background-image 1s, -webkit-transform 1s;
+    -o-transition: background-image 1s, -o-transform 1s;
+    transition: background-image 1s, transform 1s; } }

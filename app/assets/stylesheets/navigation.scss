@@ -84,12 +84,18 @@
 }
 
 .footer {
-  background: #fff;
+  //background: #fff;
   margin: 0px auto;
   width: 132px;
-  height: 100px;
-  background: url(/images/layout/footer_bg.png) no-repeat;
+  height: 60px;
+  //background: url(/images/layout/footer_bg.png) no-repeat;
   text-align: center;
+  -webkit-border-bottom-right-radius: 60px;
+  -webkit-border-bottom-left-radius: 60px;
+  -moz-border-radius-bottomright: 60px;
+  -moz-border-radius-bottomleft: 60px;
+  border-bottom-right-radius: 60px;
+  border-bottom-left-radius: 60px;
 
   &, a {
     color: #fff;
@@ -120,15 +126,15 @@
 @media only screen and (max-width: 640px) {
   .nav {
     position: absolute;
-    height: 23px;
+    //height: 23px;
 
     .logo {
-      margin-left: 10px;
+      //margin-left: 10px;
     }
 
     .container {
-      height: 23px;
-      background: #329f83;
+      //height: 23px;
+      //background: #329f83;
       width: 100%;
 
       .nav-toggle {

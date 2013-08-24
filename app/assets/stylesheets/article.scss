@@ -165,6 +165,7 @@ h2 {
 }
 
 .home-teaser {
+  top: 0px;
   padding: 182px 0px 0px 516px;
   width: 365px;
   position: absolute;
@@ -219,6 +220,7 @@ h2 {
         width: 100%;
         padding: 50px 0px 0px 0px;
         text-align: right;
+        top: 0px;
 
         h1 {
           padding-right: 20px;
@@ -244,20 +246,25 @@ h2 {
     .content-wrapper {
 
       .home-teaser {
+        position: static;
+        background: #fff;
         width: auto;
-        padding: 10px 10px 0px 10px;
-        text-align: right;
+        padding: 10px 10px 0px 20px;
+        text-align: left;
         margin-top: 0px;
 
         h1 {
           width: auto;
           float: none;
+          color: #687272;
         }
 
         h4 {
           float: none;
           clear: none;
           width: auto;
+          color: #687272;
+          margin: 0px;
         }
       }
 
@@ -273,13 +280,14 @@ h2 {
           width: auto;
 
           .center {
-            padding: 10px;
+            padding: 20px;
             text-align: left;
           }
         }
       }
 
       .block-whitefont, .block-blackfont {
+        padding: 30px 20px;
         .row {
           .left {
             padding-right: 0px;

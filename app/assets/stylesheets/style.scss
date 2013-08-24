@@ -18,11 +18,6 @@ body {
   background-size: cover;
   background-attachment: fixed;
 
-  -moz-transition: background-image 1s, -moz-transform 1s;
-  -webkit-transition: background-image 1s, -webkit-transform 1s;
-  -o-transition: background-image 1s, -o-transform 1s;
-  transition: background-image 1s, transform 1s;
-
   &.about {
     background-image: url(/images/layout/background_about.jpg);
   }
@@ -103,4 +98,13 @@ $innerPadding: 30px;
 
 .gray {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpimDh39UyAAAMABg8CcynVaVoAAAAASUVORK5CYII=');
+}
+
+@media only screen and (min-width: 898px) {
+  body {
+    -moz-transition: background-image 1s, -moz-transform 1s;
+    -webkit-transition: background-image 1s, -webkit-transform 1s;
+    -o-transition: background-image 1s, -o-transform 1s;
+    transition: background-image 1s, transform 1s;
+  }
 }
