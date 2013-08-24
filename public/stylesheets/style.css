@@ -71,6 +71,7 @@ a {
         border-right: none; }
       .nav .container ul.right a {
         font-weight: bold;
+        font-weight: 100;
         font-size: 14px;
         color: #96e4d0;
         line-height: 20px; }
@@ -927,10 +928,12 @@ h3 {
       .main-container .content-wrapper .block-whitefont img {
         display: block;
         max-width: 80px; }
-    .main-container .content-wrapper .block-whitefont .row .left, .main-container .content-wrapper .block-blackfont .row .left {
-      padding-right: 35px; }
-    .main-container .content-wrapper .block-whitefont .row .right, .main-container .content-wrapper .block-blackfont .row .right {
-      padding-left: 35px; }
+    .main-container .content-wrapper .block-whitefont, .main-container .content-wrapper .block-blackfont {
+      word-wrap: break-word; }
+      .main-container .content-wrapper .block-whitefont .row .left, .main-container .content-wrapper .block-blackfont .row .left {
+        padding-right: 35px; }
+      .main-container .content-wrapper .block-whitefont .row .right, .main-container .content-wrapper .block-blackfont .row .right {
+        padding-left: 35px; }
     .main-container .content-wrapper img.round {
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;

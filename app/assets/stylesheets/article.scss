@@ -119,6 +119,7 @@ h3 {
     }
 
     .block-whitefont, .block-blackfont {
+      word-wrap: break-word;
       .row {
         .left {
           padding-right: 35px;
