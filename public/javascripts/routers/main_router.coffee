@@ -19,6 +19,9 @@ class tt.routers.MainRouter extends Backbone.Router
     remoteDataHandler.observe "articles", @articles
     remoteDataHandler.observe "navigations", @navigations
 
+    Backbone.history.on "route", (router, path) =>
+      window.scrollTo 0, 1
+  
 
   index: ->
     @navigate "articles/home", true

@@ -20,7 +20,8 @@ tt.routers.MainRouter = (function(_super) {
   };
 
   MainRouter.prototype.initialize = function() {
-    var remoteDataHandler;
+    var remoteDataHandler,
+      _this = this;
     this.navigationView = new tt.views.NavigationView();
     this.articles = new tt.collections.Articles();
     this.navigations = new tt.collections.Navigations();
@@ -31,7 +32,10 @@ tt.routers.MainRouter = (function(_super) {
     $(".nav").html(this.navigationViewController.navigationView.render().el);
     remoteDataHandler = new tt.helpers.RemoteDataHandler();
     remoteDataHandler.observe("articles", this.articles);
-    return remoteDataHandler.observe("navigations", this.navigations);
+    remoteDataHandler.observe("navigations", this.navigations);
+    return Backbone.history.on("route", function(router, path) {
+      return window.scrollTo(0, 1);
+    });
   };
 
   MainRouter.prototype.index = function() {

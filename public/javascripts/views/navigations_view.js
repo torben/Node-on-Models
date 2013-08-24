@@ -43,20 +43,19 @@ tt.views.NavigationsView = (function(_super) {
 
   NavigationsView.prototype.closeNavigation = function(e) {
     if (this.$('.links').hasClass('fadeIn')) {
-      $("body").removeClass("no-overflow");
+      $(".nav").removeClass("fixed");
       return this.$('.links').removeClass('fadeIn').addClass('fadeOut');
     }
   };
 
   NavigationsView.prototype.showNavigation = function(e) {
     if (!this.$('.links').hasClass('fadeIn')) {
-      $("body").addClass("no-overflow");
+      $(".nav").addClass("fixed");
       return this.$('.links').removeClass('fadeOut').addClass('fadeIn');
     }
   };
 
   NavigationsView.prototype.toggleNavigation = function(e) {
-    window.scrollTo(0, 0);
     this.$('.links').show();
     if (this.$('.links').hasClass('fadeIn')) {
       return this.closeNavigation(e);

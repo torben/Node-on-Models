@@ -29,18 +29,17 @@ class tt.views.NavigationsView extends tt.views.MainView
 
   closeNavigation: (e) ->
     if @$('.links').hasClass 'fadeIn'
-      $("body").removeClass "no-overflow"
+      $(".nav").removeClass "fixed"
       @$('.links').removeClass('fadeIn').addClass('fadeOut')
 
 
   showNavigation: (e) ->
     unless @$('.links').hasClass 'fadeIn'
-      $("body").addClass "no-overflow"
+      $(".nav").addClass "fixed"
       @$('.links').removeClass('fadeOut').addClass('fadeIn')
 
 
   toggleNavigation: (e) ->
-    window.scrollTo 0,0
     @$('.links').show()
     if @$('.links').hasClass 'fadeIn'
       @closeNavigation(e)
