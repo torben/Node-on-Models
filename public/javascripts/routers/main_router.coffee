@@ -13,7 +13,10 @@ class tt.routers.MainRouter extends Backbone.Router
     @navigations = new tt.collections.Navigations()
 
     @navigationViewController = new tt.viewControllers.NavigationViewController(navigations: @navigations, router: @)
-    $(".nav").html(@navigationViewController.navigationView.render().el)
+    $(".nav").html @navigationViewController.navigationView.render().el
+
+    @footerView = new tt.views.FooterView
+    $(".footer").html @footerView.render().el
 
     remoteDataHandler = new tt.helpers.RemoteDataHandler()
     remoteDataHandler.observe "articles", @articles

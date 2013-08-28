@@ -1,10 +1,10 @@
 h1 {
   font-family: helvetica,arial;
-  font-size: 40px;
-  color: #000;
-  font-weight: bold;
-  line-height:50px;
-  margin: 10px 0px;
+  font-size: 26px;
+  color: #485155;
+  font-weight: normal;
+  line-height:30px;
+  margin: 0px;
 }
 
 h2 {
@@ -44,14 +44,23 @@ h3 {
       top: 0px;
     }
 
-    .content {
-      margin: 0px auto;
-      width: $width;
-      padding: 0px;
-    }
-
     .head-image {
       display: block;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: cover;
+
+      &.home {
+        height: 369px;
+        background-image: url(/images/layout/head_home.jpg);
+      }
+
+      &.about {
+        height: 371px;
+        background-position: 0% 0%;
+        background-image: url(/images/layout/head_about.jpg);
+      }
     }
 
     .split {
@@ -67,12 +76,20 @@ h3 {
       column-gap: 56px;
     }
 
-    .block-blackfont {
+    .content {
+      margin: 0px auto;
       width: $innerWidth;
       padding: 40px $innerPadding;
 
+      &.home {
+        width: $innerWidth;
+        padding: 38px $innerPadding;
+      }
+    }
+
+    .block-blackfont {
       &, h2, h3, a {
-        color: #000;
+        color: #485155;
       }
 
       img {
@@ -81,9 +98,6 @@ h3 {
       }
 
       &.home {
-        width: $width;
-        padding: 38px 0px;
-
         a, h2 {
           color: #687272;
         }
@@ -104,12 +118,28 @@ h3 {
     }
 
     .block-whitefont {
-      width: $innerWidth;
-      padding: 40px $innerPadding;
-
-      &, a {
+      &, h2, h3, a {
         font-size: 14px;
         color: #fff;
+      }
+
+      &, h2, h3 {
+        color: #fff;
+      }
+
+      h3 {
+        margin-bottom: 0px;
+        font-weight: bold;
+
+        a {
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
+      h4 {
+        margin: 0px 0px 20px;
+        font-weight: normal;
       }
 
       img {
@@ -144,16 +174,23 @@ h3 {
       display: inline;
     }
 
-    .techniques img {
-      float: left;
-      max-width: 35px;
-      padding: 0px;
-      border: 0;
-      margin: 10px 10px 10px 0px;
+    .techniques {
+      padding: 58px 0px 0px 0px;
+
+      img {
+        float: left;
+        max-width: 35px;
+        border: 0;
+        margin: 10px 10px 10px 0px;
+
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+      }
     }
 
     .without-image {
-      padding-top: 140px;
+      padding-top: 90px;
     }
   }
 }
@@ -163,24 +200,36 @@ h3 {
   background-position: 50% 0%;
 }
 
-.home-teaser {
-  top: 0px;
-  padding: 182px 0px 0px 516px;
-  width: 365px;
-  position: absolute;
+.home-teaser-wrapper {
+  margin: -369px auto 0px;
+  width: $innerWidth;
+  padding: 0px $innerPadding;
+  height: 369px;
 
-  h1 {
-    color: #fff;
-    font-size: 22px;
-    line-height: 30px;
-    font-weight: normal;
+  &:after {
+    clear: both;
   }
 
-  h4 {
-    color: #fff;
-    font-size: 12px;
-    font-weight: normal;
-    margin-top: 0px;
+  .home-teaser {
+    //padding: 182px 0px 0px 478px;
+    padding-top: 182px;
+    width: 365px;
+    float: right;
+    //position: absolute;
+
+    h1 {
+      color: #fff;
+      font-size: 22px;
+      line-height: 30px;
+      font-weight: normal;
+    }
+
+    h4 {
+      color: #fff;
+      font-size: 12px;
+      font-weight: normal;
+      margin-top: 0px;
+    }
   }
 }
 
@@ -214,24 +263,30 @@ h3 {
         }
       }
 
-      .home-teaser {
-        margin-top: 92px;
-        width: 100%;
-        padding: 50px 0px 0px 0px;
-        text-align: right;
-        top: 0px;
+      .content {
+        width: auto;
+      }
 
-        h1 {
-          padding-right: 20px;
-          width: 300px;
-          float: right;
-        }
+      .home-teaser-wrapper {
+        background: #fff;
+        margin: 0px;
+        width: auto;
+        padding: 10px $innerPadding;
+        height: auto;
 
-        h4 {
-          padding-right: 20px;
-          float: right;
-          clear: right;
-          width: 300px;
+        .home-teaser {
+          margin: 0px;
+          width: auto;
+          padding: 0px;
+          float: none;
+
+          h1 {
+            color: #687272;
+          }
+
+          h4 {
+            color: #687272;
+          }
         }
       }
     }
@@ -240,37 +295,15 @@ h3 {
 
 @media only screen and (max-width: 640px) {
   .main-container {
-    padding-top: 72px;
+    //padding-top: 72px;
 
     .content-wrapper {
 
-      .home-teaser {
-        position: static;
-        background: #fff;
-        width: auto;
-        padding: 10px 10px 0px 20px;
-        text-align: left;
-        margin-top: 0px;
-
-        h1 {
-          width: auto;
-          float: none;
-          color: #687272;
-        }
-
-        h4 {
-          float: none;
-          clear: none;
-          width: auto;
-          color: #687272;
-          margin: 0px;
-        }
-      }
-
-      .col2, .col3, .col4 {
-        .row {
+      .row {
+        .col1, .col2, .col3, .col4, .col5, .col6 {
           float: none;
           width: auto;
+          margin-left: 0px;
         }
       }
 
@@ -281,19 +314,6 @@ h3 {
           .center {
             padding: 20px;
             text-align: left;
-          }
-        }
-      }
-
-      .block-whitefont, .block-blackfont {
-        padding: 30px 20px;
-        .row {
-          .left {
-            padding-right: 0px;
-          }
-
-          .right {
-            padding-left: 0px;
           }
         }
       }

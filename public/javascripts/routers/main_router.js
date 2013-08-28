@@ -30,6 +30,8 @@ tt.routers.MainRouter = (function(_super) {
       router: this
     });
     $(".nav").html(this.navigationViewController.navigationView.render().el);
+    this.footerView = new tt.views.FooterView;
+    $(".footer").html(this.footerView.render().el);
     remoteDataHandler = new tt.helpers.RemoteDataHandler();
     remoteDataHandler.observe("articles", this.articles);
     remoteDataHandler.observe("navigations", this.navigations);

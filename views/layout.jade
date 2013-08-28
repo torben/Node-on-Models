@@ -27,13 +27,9 @@ html(lang="en")
 
     .main-container
       block body
-    footer.footer.gray
-      a(href='http://twitter.com/torben_tt')
-        | Torben Toepper
-        br
-        | 2013
-        br
-        | &copy;
+    .dark-gray
+      footer.footer
+        .content
 
 
 script(type="text/javascript").
@@ -50,6 +46,7 @@ script(type="text/javascript").
     '/javascripts/views/main_view.js',
     '/javascripts/views/navigations_view.js',
     '/javascripts/views/navigation_view.js',
+    '/javascripts/views/footer_view.js',
     '/javascripts/views/article_view.js',
     '/javascripts/runtime/bootstrap.js',
     '/socket.io/socket.io.js'

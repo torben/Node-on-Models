@@ -22,3 +22,26 @@ block templates
 
   script(type='text/template', id='navigation_item_template').
     <a href="/articles/<%= permalink %>" rel="backbone"><%= title %></a>
+
+  script(type='text/template', id='footer_template').
+    <div class="col3">
+      <h3>Socialize</h3>
+      <p>
+        <a href="https://github.com/torben" target="_blank">Github</a></li><br>
+        <a href="http://twitter.com/torben_tt" target="_blank">twitter</a><br>
+        <a href="http://pixoona.com/users/torben" target="_blank">facebook</a>
+      </p>
+    </div>
+    <div class="col3">
+      <h3>Kontakt</h3>
+      <p>
+        <a href="https://www.xing.com/profiles/Torben_Toepper" target="_blank">Xing</a><br>
+        <a href="<%= protocol %><%= mailLink %>"><%= mailLink %></a>
+      </p>
+    </div>
+    <div class="col3">
+      &nbsp;
+    </div>
+    <div class="col3">
+      &copy; 2013 torbentoepper.de
+    </div>
