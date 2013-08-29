@@ -54,7 +54,7 @@ tt.routers.MainRouter = (function(_super) {
           model: model
         });
         _this.navigationViewController.setCurrentNavigation(navigation);
-        return _this.navigationViewController.setView(view);
+        return _this.navigationViewController.pushView(view);
       });
     });
   };

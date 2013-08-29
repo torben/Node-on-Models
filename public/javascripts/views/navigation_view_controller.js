@@ -58,9 +58,21 @@ tt.viewControllers.NavigationViewController = (function() {
     return model.get("view").remove();
   };
 
-  NavigationViewController.prototype.pushView = function(view) {
-    var i, model, oldView, timeout, _i, _ref, _results,
+  NavigationViewController.prototype.pushView = function(view, effect) {
+    var effectIn, effectOut, i, model, oldView, timeout, _i, _ref, _results,
       _this = this;
+    if (effect == null) {
+      effect = "fade";
+    }
+    switch (effect) {
+      case "bounce":
+        effectIn = "bounceInLeft";
+        effectOut = "bounceOutRight";
+        break;
+      case "fade":
+        effectIn = "fadeIn fast";
+        effectOut = "fadeOut fast";
+    }
     model = new Backbone.Model({
       view: view
     });
@@ -69,7 +81,7 @@ tt.viewControllers.NavigationViewController = (function() {
     window.setTimeout(function() {
       $(".main-container").prepend(view.render().$el);
       if (_this.collection.length > 1) {
-        return view.$el.addClass("bounceInLeft");
+        return view.$el.addClass(effectIn);
       }
     }, timeout);
     if (this.collection.length > 1) {
@@ -78,7 +90,7 @@ tt.viewControllers.NavigationViewController = (function() {
         model = this.collection.models[i];
         oldView = model.get("view");
         if (i === this.collection.length - 2) {
-          oldView.$el.removeClass("bounceInLeft").addClass("bounceOutRight");
+          oldView.$el.removeClass(effectIn).addClass(effectOut);
           _results.push(window.setTimeout((function() {
             return _this.removeModel(model);
           }), 1300));

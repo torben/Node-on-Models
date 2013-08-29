@@ -37,4 +37,5 @@ class tt.routers.MainRouter extends Backbone.Router
 
         view = new tt.views.ArticleView(model: model)
         @navigationViewController.setCurrentNavigation navigation
-        @navigationViewController.setView view
+        #@navigationViewController.setView view
+        @navigationViewController.pushView view

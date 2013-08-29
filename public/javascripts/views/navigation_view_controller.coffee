@@ -48,7 +48,15 @@ class tt.viewControllers.NavigationViewController
     model.get("view").remove()
 
 
-  pushView: (view) ->
+  pushView: (view, effect = "fade") ->
+    switch effect
+      when "bounce"
+        effectIn = "bounceInLeft"
+        effectOut = "bounceOutRight"
+      when "fade"
+        effectIn = "fadeIn fast"
+        effectOut = "fadeOut fast"
+
     model = new Backbone.Model(view: view)
     @collection.add model
 
@@ -57,7 +65,7 @@ class tt.viewControllers.NavigationViewController
 
     window.setTimeout =>
       $(".main-container").prepend view.render().$el
-      view.$el.addClass("bounceInLeft") if @collection.length > 1
+      view.$el.addClass(effectIn) if @collection.length > 1
     , timeout
 
     if @collection.length > 1
@@ -65,7 +73,7 @@ class tt.viewControllers.NavigationViewController
         model = @collection.models[i]
         oldView = model.get "view"
         if i == @collection.length - 2
-          oldView.$el.removeClass("bounceInLeft").addClass("bounceOutRight")
+          oldView.$el.removeClass(effectIn).addClass(effectOut)
           window.setTimeout (=> @removeModel(model)), 1300
           #@removeModel(model)
         else if i < @collection.length - 3
