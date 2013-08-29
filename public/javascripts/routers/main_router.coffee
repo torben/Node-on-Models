@@ -23,7 +23,9 @@ class tt.routers.MainRouter extends Backbone.Router
     remoteDataHandler.observe "navigations", @navigations
 
     Backbone.history.on "route", (router, path) =>
-      window.scrollTo 0, 1
+      window.setTimeout ->
+        window.scrollTo 0, 1 if $.os.ios
+      ,25
   
 
   index: ->

@@ -36,7 +36,11 @@ tt.routers.MainRouter = (function(_super) {
     remoteDataHandler.observe("articles", this.articles);
     remoteDataHandler.observe("navigations", this.navigations);
     return Backbone.history.on("route", function(router, path) {
-      return window.scrollTo(0, 1);
+      return window.setTimeout(function() {
+        if ($.os.ios) {
+          return window.scrollTo(0, 1);
+        }
+      }, 25);
     });
   };
 
