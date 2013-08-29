@@ -39,7 +39,7 @@ h3 {
     position: relative;
     width: 100%;
 
-    &.bounceOutRight {
+    &.bounceOutRight, &.fadeOut {
       position: absolute;
       top: 0px;
     }

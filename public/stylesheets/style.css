@@ -891,7 +891,7 @@ h3 {
   .main-container .content-wrapper {
     position: relative;
     width: 100%; }
-    .main-container .content-wrapper.bounceOutRight {
+    .main-container .content-wrapper.bounceOutRight, .main-container .content-wrapper.fadeOut {
       position: absolute;
       top: 0px; }
     .main-container .content-wrapper .head-image {

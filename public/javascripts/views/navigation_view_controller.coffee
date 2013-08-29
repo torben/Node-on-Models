@@ -53,14 +53,16 @@ class tt.viewControllers.NavigationViewController
       when "bounce"
         effectIn = "bounceInLeft"
         effectOut = "bounceOutRight"
+        effectTimeout = 300
       when "fade"
-        effectIn = "fadeIn fast"
-        effectOut = "fadeOut fast"
+        effectIn = "fadeIn"
+        effectOut = "fadeOut"
+        effectTimeout = 1
 
     model = new Backbone.Model(view: view)
     @collection.add model
 
-    timeout = if @collection.length > 1 then 300 else 1
+    timeout = if @collection.length > 1 then effectTimeout else 1
     #timeout = 1
 
     window.setTimeout =>
@@ -76,5 +78,5 @@ class tt.viewControllers.NavigationViewController
           oldView.$el.removeClass(effectIn).addClass(effectOut)
           window.setTimeout (=> @removeModel(model)), 1300
           #@removeModel(model)
-        else if i < @collection.length - 3
+        else if i < @collection.length - 2
           @removeModel(model)
