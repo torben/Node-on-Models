@@ -59,7 +59,7 @@ tt.viewControllers.NavigationViewController = (function() {
   };
 
   NavigationViewController.prototype.pushView = function(view, effect) {
-    var effectIn, effectOut, effectTimeout, i, model, oldView, timeout, _i, _ref, _results,
+    var effectIn, effectOut, effectTimeout, i, model, oldModel, oldView, timeout, _i, _ref,
       _this = this;
     if (effect == null) {
       effect = "fade";
@@ -78,32 +78,33 @@ tt.viewControllers.NavigationViewController = (function() {
     model = new Backbone.Model({
       view: view
     });
+    $(".main-container").prepend(view.render().$el);
+    view.$el.hide();
+    if (this.collection.length > 1) {
+      for (i = _i = 0, _ref = this.collection.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        oldModel = this.collection.models[0];
+        if (oldModel == null) {
+          continue;
+        }
+        oldView = oldModel.get("view");
+        this.removeModel(oldModel);
+      }
+    } else if (this.collection.length === 1) {
+      oldModel = this.collection.models[0];
+      oldView = oldModel.get("view");
+      oldView.$el.removeClass(effectIn).addClass(effectOut);
+      window.setTimeout((function() {
+        return _this.removeModel(oldModel);
+      }), 1100);
+    }
     this.collection.add(model);
     timeout = this.collection.length > 1 ? effectTimeout : 1;
-    window.setTimeout(function() {
-      $(".main-container").prepend(view.render().$el);
+    return window.setTimeout(function() {
+      view.$el.show();
       if (_this.collection.length > 1) {
         return view.$el.addClass(effectIn);
       }
     }, timeout);
-    if (this.collection.length > 1) {
-      _results = [];
-      for (i = _i = _ref = this.collection.length - 1; _ref <= 0 ? _i <= 0 : _i >= 0; i = _ref <= 0 ? ++_i : --_i) {
-        model = this.collection.models[i];
-        oldView = model.get("view");
-        if (i === this.collection.length - 2) {
-          oldView.$el.removeClass(effectIn).addClass(effectOut);
-          _results.push(window.setTimeout((function() {
-            return _this.removeModel(model);
-          }), 1300));
-        } else if (i < this.collection.length - 2) {
-          _results.push(this.removeModel(model));
-        } else {
-          _results.push(void 0);
-        }
-      }
-      return _results;
-    }
   };
 
   return NavigationViewController;

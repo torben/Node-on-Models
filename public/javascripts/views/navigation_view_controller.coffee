@@ -60,23 +60,28 @@ class tt.viewControllers.NavigationViewController
         effectTimeout = 1
 
     model = new Backbone.Model(view: view)
+
+    $(".main-container").prepend view.render().$el
+    view.$el.hide()
+
+    if @collection.length > 1
+      for i in [0..@collection.length-1]
+        oldModel = @collection.models[0]
+        continue unless oldModel?
+        oldView = oldModel.get "view"
+        @removeModel(oldModel)
+    else if @collection.length == 1
+      oldModel = @collection.models[0]
+      oldView = oldModel.get "view"
+      oldView.$el.removeClass(effectIn).addClass(effectOut)
+      window.setTimeout (=> @removeModel(oldModel)), 1100
+
     @collection.add model
 
     timeout = if @collection.length > 1 then effectTimeout else 1
-    #timeout = 1
 
     window.setTimeout =>
-      $(".main-container").prepend view.render().$el
+      view.$el.show()
       view.$el.addClass(effectIn) if @collection.length > 1
     , timeout
 
-    if @collection.length > 1
-      for i in [@collection.length-1..0]
-        model = @collection.models[i]
-        oldView = model.get "view"
-        if i == @collection.length - 2
-          oldView.$el.removeClass(effectIn).addClass(effectOut)
-          window.setTimeout (=> @removeModel(model)), 1300
-          #@removeModel(model)
-        else if i < @collection.length - 2
-          @removeModel(model)
