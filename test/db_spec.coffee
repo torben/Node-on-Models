@@ -1,3 +1,4 @@
+require('coffee-script');
 fs = require('fs')
 assert = require("assert")
 should = require('should')

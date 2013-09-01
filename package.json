@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "torbentoepper.de",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,5 +15,8 @@
     "async": "~0.2.9",
     "jade": "~0.34.1",
     "node-sass": "~0.6.2"
+  },
+  "devDependencies": {
+    "should": "~1.2.2"
   }
 }

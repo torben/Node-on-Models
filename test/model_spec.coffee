@@ -1,3 +1,4 @@
+require('coffee-script');
 assert = require("assert")
 db = require("#{__dirname}/../db/db")('test')
 Model = require("#{__dirname}/../app/models/model")

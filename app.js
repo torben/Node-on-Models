@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+require('coffee-script');
 var express = require('express')
   , routes = require('./routes/index')
   , http = require('http')
