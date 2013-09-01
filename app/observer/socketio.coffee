@@ -7,13 +7,10 @@ module.exports = (server) ->
     socket.on 'observe', (msg) ->
       switch msg.collection
         when "articles"
-          console.log("1x")
           Article.all (err, articles) ->
-            console.log articles.map (article) -> return article.id
             return if err?
 
             articles.forEach (article) ->
-              console.log(article.id)
               socket.emit 'articles', article.toJSON()
       
         when "navigations"
