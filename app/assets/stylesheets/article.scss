@@ -53,6 +53,7 @@ h3 {
 
       &.home {
         height: 369px;
+        background-position: 0% 100%;
         background-image: url(/images/layout/head_home.jpg);
       }
 
@@ -298,6 +299,18 @@ h3 {
     //padding-top: 72px;
 
     .content-wrapper {
+
+      .head-image {
+        &.home {
+          height: 250px;
+          background-position: 26% 100%;
+        }
+
+        &.about {
+          height: 250px;
+          background-position: 0px 50px;
+        }
+      }
 
       .row {
         .col1, .col2, .col3, .col4, .col5, .col6 {

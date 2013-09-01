@@ -902,6 +902,7 @@ h3 {
       background-size: cover; }
       .main-container .content-wrapper .head-image.home {
         height: 369px;
+        background-position: 0% 100%;
         background-image: url(/images/layout/head_home.jpg); }
       .main-container .content-wrapper .head-image.about {
         height: 371px;
@@ -1047,6 +1048,12 @@ h3 {
         color: #687272; } }
 
 @media only screen and (max-width: 640px) {
+  .main-container .content-wrapper .head-image.home {
+    height: 250px;
+    background-position: 26% 100%; }
+  .main-container .content-wrapper .head-image.about {
+    height: 250px;
+    background-position: 0px 50px; }
   .main-container .content-wrapper .row .col1, .main-container .content-wrapper .row .col2, .main-container .content-wrapper .row .col3, .main-container .content-wrapper .row .col4, .main-container .content-wrapper .row .col5, .main-container .content-wrapper .row .col6 {
     float: none;
     width: auto;
