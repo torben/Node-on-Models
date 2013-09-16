@@ -95,8 +95,8 @@
 
 .footer {
   margin: 0px auto;
-  width: $width;
-  padding: 34px 0px 30px;
+  width: $innerWidth;
+  padding: 34px $innerPadding 30px;
 
   p {
     margin: 0px;
