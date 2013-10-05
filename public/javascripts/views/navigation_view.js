@@ -19,6 +19,10 @@ tt.views.NavigationView = (function(_super) {
 
   NavigationView.prototype.model = tt.models.Navigation;
 
+  NavigationView.prototype.events = {
+    'click a': 'handleClick'
+  };
+
   NavigationView.prototype.initialize = function(options) {
     if (options == null) {
       options = {};
@@ -31,6 +35,10 @@ tt.views.NavigationView = (function(_super) {
     if (options.model != null) {
       return this.model.on('change:current', this.changeCurrent);
     }
+  };
+
+  NavigationView.prototype.handleClick = function() {
+    return $('.nav').addClass("animated");
   };
 
   NavigationView.prototype.changeCurrent = function(model) {

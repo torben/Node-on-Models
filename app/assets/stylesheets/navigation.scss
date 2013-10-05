@@ -1,13 +1,22 @@
+$animateDuration: 1s;
+
 .nav {
   position: fixed;
   top: 0px;
   left:0px;
   width: 100%;
-  height: 98px;
-  background: url(/images/layout/navigation_bg.png);
+  height: 74px;
+  background: #414d5a;
   
   border: none;
   z-index: 99999;
+
+  &.animated {
+    -moz-transition:background-color $animateDuration;
+    -webkit-transition:background-color $animateDuration;
+    -o-transition:background-color $animateDuration;
+    transition:background-color $animateDuration;
+  }
 
   a {
     color: #838383;
@@ -23,6 +32,13 @@
     display: none;
   }
 
+  &.animated .container .logo {
+    -moz-transition:background-color $animateDuration;
+    -webkit-transition:background-color $animateDuration;
+    -o-transition:background-color $animateDuration;
+    transition:background-color $animateDuration;
+  }
+
   .container {
     margin: 0px auto;
     width: $innerWidth;
@@ -30,13 +46,20 @@
     padding: 0px $innerPadding;
 
     .logo {
-      background: url(/images/layout/navigation_round.png) left top no-repeat;
+      background: #414d5a;
       display: block;
       float: left;
-      width: 100px;
-      height: 84px;
-      padding-top: 14px;
-      margin: 0px;
+      width: 170px;
+      height: 90px;
+      padding-top: 8px;
+      margin: 6px 0px 0px -50px;
+      $round: 100px;
+      -webkit-border-bottom-right-radius: $round;
+      -webkit-border-bottom-left-radius: $round;
+      -moz-border-radius-bottomright: $round;
+      -moz-border-radius-bottomleft: $round;
+      border-bottom-right-radius: $round;
+      border-bottom-left-radius: $round;
 
       img {
         margin: 0px auto;
@@ -77,11 +100,17 @@
         border-right: none;
       }
 
+      .animated a {
+        -moz-transition:color $animateDuration;
+        -webkit-transition:color $animateDuration;
+        -o-transition:color $animateDuration;
+        transition:color $animateDuration;
+      }
+
       a {
-        font-weight: bold;
-        font-weight: 100;
-        font-size: 14px;
-        color: #96e4d0;
+        font-weight: normal;
+        font-size: 15px;
+        color: #808690;
         line-height: 20px;
       }
 
@@ -89,6 +118,28 @@
         //text-decoration: underline;
         color: #fff;
       }
+    }
+  }
+}
+
+.home {
+  .nav {
+    background: #414d5a;
+    .logo {
+      background: #414d5a;
+    }
+  }
+}
+
+.skills {
+  .nav {
+    background: #329f83;
+    .logo {
+      background: #329f83;
+    }
+
+    ul.right a {
+      color: #8fdfcb;
     }
   }
 }

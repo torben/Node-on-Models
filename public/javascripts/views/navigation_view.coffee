@@ -4,6 +4,9 @@ class tt.views.NavigationView extends tt.views.MainView
   template: _.template($('#navigation_item_template').html())
   tagName: 'li'
   model: tt.models.Navigation
+  events:
+    'click a': 'handleClick'
+
 
   initialize: (options = {}) ->
     super(options)
@@ -12,6 +15,10 @@ class tt.views.NavigationView extends tt.views.MainView
 
     _.bindAll @, 'changeCurrent'
     @model.on 'change:current', @changeCurrent if options.model?
+
+
+  handleClick: ->
+    $('.nav').addClass "animated"
 
 
   changeCurrent: (model) ->

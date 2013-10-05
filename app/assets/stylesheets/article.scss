@@ -49,11 +49,18 @@ h3 {
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: cover;
+      margin-top: 74px;
 
       &.home {
-        height: 453px;
+        height: 377px;
         background-position: 50% 100%;
         background-image: url(/images/layout/head_home.jpg);
+      }
+
+      &.skills {
+        height: 377px;
+        background-position: 50% 100%;
+        background-image: url(/images/layout/head_skills.jpg);
       }
 
       &.about {
@@ -226,22 +233,16 @@ h3 {
 }
 
 .home-teaser-wrapper {
-  margin: -453px auto 0px;
+  margin: -268px auto 0px;
   width: $innerWidth;
+  height: 268px;
   padding: 0px $innerPadding;
-  height: 453px;
 
   &:after {
     clear: both;
   }
 
   .home-teaser {
-    //padding: 182px 0px 0px 478px;
-    padding-top: 195px;
-    width: 334px;
-    float: right;
-    //position: absolute;
-
     h1 {
       color: #fff;
       font-size: 30px;
